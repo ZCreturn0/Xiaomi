@@ -5,9 +5,99 @@
 
 body,.wrapper{
 	width: 100%;
+	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+	border: none;
+}
+
+.cb{
+	clear: both;
 }
 
 .nav{
 	width: 100%;
 	background: #333;
+}
+
+.nav-title,.nav-personal{
+	list-style-type: none;
+	color: #b0b0b0;
+	font-size: 12px;
+	line-height: 40px;
+}
+
+.nav-title{
+	float: left;
+	margin-left: 30px;
+}
+
+.nav ul>li{
+	display: block;
+	height: 40px;
+}
+
+.nav ul>li p:hover{
+	cursor: pointer;
+	color: white;
+}
+
+.nav-title>span,li{
+	float: left;
+}
+
+.nav-personal{
+	float: right;
+	margin-right: 30px;
+}
+
+.nav-personal>li,span{
+	float: right;
+}
+
+.shopping{
+	position: relative;
+	color: #b0b0b0;
+	background: #424242;
+	padding-left: 15px;
+	margin-left: 20px;
+	padding-right: 20px;
+}
+
+.shopping:hover{
+	background: white;
+	cursor: pointer;
+	color: #ff6700;
+}
+
+.shopping-list{
+	position: absolute;
+	display: none;
+	top: 40px;
+	background: white;
+	color: #424242;
+	width: 276px;
+	height: 98px;
+	line-height: 98px;
+	text-align: center;
+
+  	box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+	right: 0;
+}
+
+.shopping-list:hover{
+	cursor: default;
+}
+
+.nav-personal>li img{
+	display: block;
+	float: left;
+	font-size: 20px;
+	color: #b0b0b0;
+	padding-top: 10px;
+	margin-right: 5px;
+}
+
+.separator{
+	font-family: sans-serif;
+	margin: 0 0.5em;
+	color: #424242;
 }
