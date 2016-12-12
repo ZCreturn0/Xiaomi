@@ -49,7 +49,7 @@ body,.wrapper{
 	margin-right: 30px;
 }
 
-.nav-personal>li,span{
+.nav-personal>li,.nav-personal>span{
 	float: right;
 }
 
@@ -100,4 +100,121 @@ body,.wrapper{
 	font-family: sans-serif;
 	margin: 0 0.5em;
 	color: #424242;
+}
+
+.header{
+	position: relative;
+	width: 96.8%;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.header-logo,.header-list,.search-box{
+	position: absolute;
+}
+
+.header-logo{
+	left: 0.8%;
+	width: 55px;
+	height: 55px;
+	background: url('../images/mi-logo.png') 50% 50%;
+	background-color: #ff6700;
+	top: 22.5px;
+}
+
+.header-list{
+	left: 19.5%;
+}
+
+li.product{
+	color: #333;
+	font-size: 16px;
+	padding: 26px 10px 38px;
+}
+
+li.product p{
+	cursor: pointer;
+}
+
+li.product:hover{
+	color: #ff6700;
+}
+
+ul.products-list{
+	list-style-type: none;
+	padding: 12px 0 0 0px;
+}
+
+.search-box{
+	border: 1px solid #ccc;
+	right: 5%;
+}
+
+.header-list-item{
+	position: absolute;
+	left: -1.7%;
+	border: 1px solid #666;
+	border-top: 1px solid #ccc;
+	top: 100px;
+	height: 229px;		/*111111111111111111111*/
+	overflow: hidden;
+}
+
+ul.products-entrance{
+	list-style-type: none;
+	text-align: center;
+	padding: 0 2.4%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+li.product-entrance{
+	position: relative;
+	font-size: 12px;
+	display: block;
+	width: 15%;
+	margin: 0 1%;
+}
+
+#first-product{
+	margin-left: 0;
+}
+
+#last-product{
+	margin-right: 0;
+}
+
+.current-available{
+	display: inline-block;
+	color: #ff6700;
+	border: 1px solid #ff6700;
+	height: 18px;
+    padding: 1px 20px;
+    border: 1px solid #ff6700;
+    color: #ff6700;
+}
+
+.product-pic img{
+	width: 160px;
+	height: 110px;
+	cursor: pointer;
+}
+
+.product-name a{
+	text-decoration: none;
+	color: #333;
+}
+
+.product-price p{
+	color: #ff6700;
+}
+
+ul.products-entrance .separator1{
+	position: absolute;
+	display: inline-block;
+	width: 1px;
+	height: 100px;
+	background-color: #e0e0e0;
+	top: 30px;
+	right: 0;
 }
