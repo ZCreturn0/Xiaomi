@@ -17,6 +17,7 @@ function init()
 	$('.all-products').css('height',$('.all-products').width() * (460/1226) + 'px');
 	$('.products-sort').css('width',234/1226 * $('.all-products').width());
 	$('.products-sort').css('height',$('.all-products').height());
+//	console.log($('.all-products').height())
 	productsShow();
 	searchBox();
 }

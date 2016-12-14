@@ -158,10 +158,11 @@ ul.products-list{
 .search-box-text{
 	display: block;
 	position: absolute;
-	width: 243px;
+	width: 233px;
 	height: 48px;
 	border: 1px solid #ccc;
 	outline:none;
+	padding-left: 10px;
 }
 
 .search-box-button{
@@ -213,6 +214,8 @@ ul.search-tips-list{
 	width: 243px;
 	list-style-type: none;
 	margin: 0 auto;
+	z-index: 10;
+	background: white;
 }
 
 li.search-tip{
