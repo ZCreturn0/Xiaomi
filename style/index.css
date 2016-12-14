@@ -1,12 +1,13 @@
 *{
 	margin: 0;
 	padding: 0;
+	border: none;
+	border-width: 0px;
 }
 
 body,.wrapper{
 	width: 100%;
 	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
-	border: none;
 }
 
 .cb{
@@ -120,6 +121,7 @@ body,.wrapper{
 	background: url('../images/mi-logo.png') 50% 50%;
 	background-color: #ff6700;
 	top: 22.5px;
+	cursor: pointer;
 }
 
 .header-list{
@@ -146,8 +148,97 @@ ul.products-list{
 }
 
 .search-box{
+	position: absolute;
+	right: 1%;
+	top: 22.5px;
+	width: 295px;
+    height: 48px;
+}
+
+.search-box-text{
+	display: block;
+	position: absolute;
+	width: 243px;
+	height: 48px;
 	border: 1px solid #ccc;
-	right: 5%;
+	outline:none;
+}
+
+.search-box-button{
+	display: block;
+	position: absolute;
+	width: 49px;
+	height: 48px;
+	right: 0;
+	border: 1px solid #ccc;
+	border-left: 0;
+	background-color: white;
+	cursor: pointer;
+}
+
+.search-box-button img{
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 14px;
+	left: 14.5px;
+}
+
+.search-box-tips-button{
+	display: block;
+	position: absolute;
+	padding: 2px 5px;
+    font-size: 12px;
+    background: #eee;
+    color: #757575;
+    top: 16px;
+    cursor: pointer;
+}
+
+#btn1{
+	right: 150px;
+}
+
+#btn2{
+	right: 60px;
+}
+
+ul.search-tips-list{
+	position: absolute;
+	display: none;
+	top: 50px;
+	border: 1px solid #ff6700;
+	border-top: none;
+	width: 243px;
+	list-style-type: none;
+	margin: 0 auto;
+}
+
+li.search-tip{
+	cursor: pointer;
+	display: block;
+	width: 90%;
+	padding: 6px 12px;
+    font-size: 12px;
+    color: #424242;
+}
+
+li.search-tip:hover{
+	background: #fafafa;
+}
+
+li.search-tip p{
+	display: inline-block;
+}
+
+p.tips-left{
+	float: left;
+}
+
+p.tips-right{
+	float: right;
+	color: #b0b0b0;
 }
 
 .header-list-item{
@@ -158,6 +249,7 @@ ul.products-list{
 	height: 0px;		/*111111111111111111111*/
 	overflow: hidden;
 	background: white;
+	z-index: 100;
 }
 
 ul.products-entrance{
@@ -225,4 +317,19 @@ ul.products-entrance .separator1{
 	background-color: #e0e0e0;
 	top: 35px;
 	right: -6.5%;
+}
+
+.all-products{
+	cursor: pointer;
+	position: relative;
+	margin: 0 auto;
+	background: url('../images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg');
+	z-index: 1;
+}
+
+ul.products-sort{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba(0,0,0,0.6);
 }

@@ -13,7 +13,12 @@ function init()
 		$('.shopping-list').stop().slideUp(250);
 	});
 	$('.header-list-item').css('width',$('.wrapper').width());
+	$('.all-products').css('width',1226/1366 * screen.width);
+	$('.all-products').css('height',$('.all-products').width() * (460/1226) + 'px');
+	$('.products-sort').css('width',234/1226 * $('.all-products').width());
+	$('.products-sort').css('height',$('.all-products').height());
 	productsShow();
+	searchBox();
 }
 
 function productsShow()
@@ -284,4 +289,64 @@ function hardware()
 	$('.product-price:eq(3) p').text("699元");
 	$('.product-price:eq(4) p').text("399元");
 	$('.product-price:eq(5) p').text("");
+}
+
+function searchBox()
+{
+	$('.search-box-button').mouseover(function(){
+		$('.search-box-button').stop().animate({'backgroundColor':'#ff6700'},100);		//背景色渐变需引入jquery.color.js，且必须是backgroundColor
+		$('.search-box-button img').attr('src','images/放大镜hover.png');
+		$('.search-box-button').css('border-color','#ff6700');
+		if(!$('.search-box-text').is(":focus"))
+		{
+			$('.search-box-text').css('border-color','#b0b0b0');
+		}
+	});
+	$('.search-box-button').mouseout(function(){
+		$('.search-box-button').stop().animate({'backgroundColor':'#fff'},100);		//背景色渐变需引入jquery.color.js，且必须是backgroundColor
+		$('.search-box-button img').attr('src','images/放大镜.png');
+		if(!$('.search-box-text').is(":focus"))
+		{
+			$('.search-box-button').css('border-color','#ccc');
+			$('.search-box-button').css('border-left','none');
+			$('.search-box-text').css('border-color','#ccc');
+		}
+	});
+
+	$('.search-box-text').mouseover(function(){
+		if(!$('.search-box-text').is(":focus"))
+		{
+			$('.search-box-text').css('border-color','#b0b0b0');
+			$('.search-box-button').css('border-color','#b0b0b0');
+		}
+	});
+	$('.search-box-text').mouseout(function(){
+		if(!$('.search-box-text').is(":focus"))
+		{
+			$('.search-box-text').css('border-color','#ccc');
+			$('.search-box-button').css('border-color','#ccc');
+		}
+	});
+
+	$('#btn1,#btn2').mouseover(function(){
+		$(this).stop().animate({'backgroundColor':'#ff6700'},100);
+		$(this).css('color','white');
+	});
+	$('#btn1,#btn2').mouseout(function(){
+		$(this).stop().animate({'backgroundColor':'#eee'},100);
+		$(this).css('color','#757575');
+	});
+
+	$('.search-box-text').focus(function(){
+		$('.search-tips-list').css('display','block');
+		$('.search-box-text').css('border-color','#ff6700');
+		$('.search-box-button').css('border-color','#ff6700');
+		$('.search-box-tips-button').css('display','none');
+	});
+	$('.search-box-text').blur(function(){
+		$('.search-box-text').css('border-color','#ccc');
+		$('.search-box-button').css('border-color','#ccc');
+		$('.search-box-tips-button').css('display','block');
+		$('.search-tips-list').css('display','none');
+	});
 }
