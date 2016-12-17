@@ -2,7 +2,39 @@ $(document).ready(function(){
 	init();
 });
 
+var currentItemIndex;
+var currentPic = "pic1";
+var nextPic = "pic2";
+
 function init()
+{
+	eventSet();
+	
+	cssSet();
+	productsShow();
+	searchBox();
+	itemChanged();
+}
+
+function cssSet()
+{
+	currentItemIndex = "1";
+	$('.header-list-item').css('width',$('.wrapper').width());
+	$('.all-products').css('width',1226/1366 * screen.width);
+	$('.all-products').css('height',$('.all-products').width() * (460/1226) + 'px');
+	$('.products-sort').css('width',234/1226 * $('.all-products').width());
+	$('.products-sort').css('height',$('.all-products').height());
+	$('.slide-left,.slide-right').css('top',$('.bg-pic').height()/2-$('.slide-left').height()/2);
+	$('.slide-left').css('left',$('.products-sort').width());
+	$('.product-item').css('height',42/460 * $('.products-sort').height());
+	$('#first-product-item').css('margin-top',$('.products-sort').height() * 20/460);
+	$('.product-item-location').css('margin-top',$('.product-item').height()/4 + 'px');
+	$('.product-list').css('left',$('.products-sort').width());
+	setPhoneListWidth();
+
+}
+
+function eventSet()
 {
 	$('.shopping').mouseover(function(){
 		$('.shopping img').attr("src", "images/购物车hover.svg");
@@ -12,14 +44,6 @@ function init()
 		$('.shopping img').attr("src", "images/购物车.svg");
 		$('.shopping-list').stop().slideUp(250);
 	});
-	$('.header-list-item').css('width',$('.wrapper').width());
-	$('.all-products').css('width',1226/1366 * screen.width);
-	$('.all-products').css('height',$('.all-products').width() * (460/1226) + 'px');
-	$('.products-sort').css('width',234/1226 * $('.all-products').width());
-	$('.products-sort').css('height',$('.all-products').height());
-//	console.log($('.all-products').height())
-	productsShow();
-	searchBox();
 }
 
 function productsShow()
@@ -74,6 +98,12 @@ function itemInit()
 	$('.separator1:eq(2)').css('display','inline-block');
 	$('.separator1:eq(3)').css('display','inline-block');
 	$('.separator1:eq(4)').css('display','inline-block');
+	$('.product-pic:eq(0) img').attr('src','');
+	$('.product-pic:eq(1) img').attr('src','');
+	$('.product-pic:eq(2) img').attr('src','');
+	$('.product-pic:eq(3) img').attr('src','');
+	$('.product-pic:eq(4) img').attr('src','');
+	$('.product-pic:eq(5) img').attr('src','');
 }
 
 function selectProductsItem(index)
@@ -350,4 +380,99 @@ function searchBox()
 		$('.search-box-tips-button').css('display','block');
 		$('.search-tips-list').css('display','none');
 	});
+}
+
+function itemChanged()
+{
+	var clickItemIndex;
+	var uiPageItem = $('.ui-page-item');
+	for(var i=0;i<uiPageItem.length;i++)
+	{
+		$(uiPageItem[i]).on('click',function(){
+			clickItemIndex = $(this).attr('index');
+			switch(clickItemIndex)
+			{
+				case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
+				case "2":$('#bg-'+nextPic).css('background','url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)');break;
+				case "3":$('#bg-'+nextPic).css('background','url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)');break;
+				case "4":$('#bg-'+nextPic).css('background','url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)');break;
+				case "5":$('#bg-'+nextPic).css('background','url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)');break;
+				default:;
+			}
+			$(".ui-page-item[index="+currentItemIndex+"]").removeClass('current-item');
+			$(this).addClass('current-item');
+			currentItemIndex = $(this).attr('index');
+			$('#bg-'+currentPic).fadeOut(500,function(){
+				$(this).css('z-index','10');
+				$('#bg-'+nextPic).css('z-index','20');
+				var t = currentPic;
+				currentPic = nextPic;
+				nextPic = t;
+				$(this).fadeIn();
+			});
+		});
+	}
+
+	$('.slide-left').on('click',function(){
+		var currentIndex = currentItemIndex;
+		currentItemIndex = (currentIndex-1==0?"5":currentIndex-1+"");		//需返回字符串
+		switch(currentItemIndex)
+		{
+			case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
+			case "2":$('#bg-'+nextPic).css('background','url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)');break;
+			case "3":$('#bg-'+nextPic).css('background','url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)');break;
+			case "4":$('#bg-'+nextPic).css('background','url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)');break;
+			case "5":$('#bg-'+nextPic).css('background','url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)');break;
+			default:;
+		}
+		$(".ui-page-item[index="+currentIndex+"]").removeClass('current-item');
+		$(".ui-page-item[index="+currentItemIndex+"]").addClass('current-item');
+		$('#bg-'+currentPic).fadeOut(500,function(){
+			$(this).css('z-index','10');
+			$('#bg-'+nextPic).css('z-index','20');
+			var t = currentPic;
+			currentPic = nextPic;
+			nextPic = t;
+			$(this).fadeIn();
+		});
+	});
+
+	$('.slide-right').on('click',function(){
+		var currentIndex = currentItemIndex;
+		currentItemIndex = (parseInt(currentIndex)+1==6?"1":parseInt(currentIndex)+1+"");		//需返回字符串
+		switch(currentItemIndex)
+		{
+			case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
+			case "2":$('#bg-'+nextPic).css('background','url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)');break;
+			case "3":$('#bg-'+nextPic).css('background','url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)');break;
+			case "4":$('#bg-'+nextPic).css('background','url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)');break;
+			case "5":$('#bg-'+nextPic).css('background','url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)');break;
+			default:;
+		}
+		$(".ui-page-item[index="+currentIndex+"]").removeClass('current-item');
+		$(".ui-page-item[index="+currentItemIndex+"]").addClass('current-item');
+		$('#bg-'+currentPic).fadeOut(500,function(){
+			$(this).css('z-index','10');
+			$('#bg-'+nextPic).css('z-index','20');
+			var t = currentPic;
+			currentPic = nextPic;
+			nextPic = t;
+			$(this).fadeIn();
+		});
+	});
+}
+
+function setPhoneListWidth()			//div宽度由子ul决定    ?????
+{
+	var phone = $('#phone');
+	var phoneList = $('.phone-list');
+	var wid = 0;
+	for(var i=0;i<phoneList.length;i++)
+	{
+		console.log($(phoneList[i]).width());
+		wid += $(phoneList[i]).width();
+	}
+	console.log(wid);
+
+
 }
