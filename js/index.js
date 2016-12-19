@@ -30,6 +30,10 @@ function cssSet()
 	$('#first-product-item').css('margin-top',$('.products-sort').height() * 20/460);
 	$('.product-item-location').css('margin-top',$('.product-item').height()/4 + 'px');
 	$('.product-list').css('left',$('.products-sort').width());
+	$('.product-info img').css('top',$('.product-info').height()/2 - $('.product-info img').height()/2 - 14 + 'px');
+	$('.product-info p').css('top',$('.product-info').height()/2 - $('.product-info img').height()/2 - 5 + 'px');	//7:字体大小的一半
+	$('.product-info p').css('left',$('ul.list img').width() + 25 - 14 + 'px');
+	$('.purchase').css('top',($('.product-info').height()-$('.purchase').height())/2 - 14 + 'px')
 	setPhoneListWidth();
 
 }
@@ -44,6 +48,13 @@ function eventSet()
 		$('.shopping img').attr("src", "images/购物车.svg");
 		$('.shopping-list').stop().slideUp(250);
 	});
+	$('.product-info').mouseover(function(){
+		$(this).children('p').css('color','#ff6700');
+	});
+	$('.product-info').mouseout(function(){
+		$(this).children('p').css('color','#333');
+	});
+	showProductList();
 }
 
 function productsShow()
@@ -462,17 +473,45 @@ function itemChanged()
 	});
 }
 
-function setPhoneListWidth()			//div宽度由子ul决定    ?????
+function setPhoneListWidth()			//div宽度由子ul决定
 {
-	var phone = $('#phone');
-	var phoneList = $('.phone-list');
-	var wid = 0;
-	for(var i=0;i<phoneList.length;i++)
+	var productList = $('.product-list');
+	for(var i=0;i<productList.length;i++)
 	{
-		console.log($(phoneList[i]).width());
-		wid += $(phoneList[i]).width();
+		var wid = 0;
+		for(var j=0;j<$(productList[i]).children(".list").length;j++)
+		{
+	//		console.log($(productList[i]).children(".list:eq("+j+")").width());
+			wid += $(productList[i]).children(".list").width();
+		}
+		$(productList[i]).width(wid+30);
+	//	console.log($(productList[i]).width());
 	}
-	console.log(wid);
+}
 
+function showProductList()
+{
+	var productItem = $('.product-item');
+	for(var i=0;i<productItem.length;i++)
+	{
+		$(productItem[i]).mouseover(function(){
+			var index = $(this).attr('index');
+			$('.product-list[index='+index+']').css('display','block');
+		});
+		$(productItem[i]).mouseout(function(){
+			var index = $(this).attr('index');
+			$('.product-list[index='+index+']').css('display','none');
+		});
+	}
 
+	var productList = $('.product-list');
+	for(var i=0;i<productList.length;i++)
+	{
+		$(productList[i]).mouseover(function(){
+			$(this).css('display','block');
+		});
+		$(productList[i]).mouseout(function(){
+			$(this).css('display','none');
+		});
+	}
 }
