@@ -5,6 +5,7 @@ $(document).ready(function(){
 var currentItemIndex;
 var currentPic = "pic1";
 var nextPic = "pic2";
+var hwnd;
 
 function init()
 {
@@ -22,8 +23,10 @@ function cssSet()
 	$('.header-list-item').css('width',$('.wrapper').width());
 	$('.all-products').css('width',1226/1366 * screen.width);
 	$('.all-products').css('height',$('.all-products').width() * (460/1226) + 'px');
+	
 	$('.products-sort').css('width',234/1226 * $('.all-products').width());
 	$('.products-sort').css('height',$('.all-products').height());
+	
 	$('.slide-left,.slide-right').css('top',$('.bg-pic').height()/2-$('.slide-left').height()/2);
 	$('.slide-left').css('left',$('.products-sort').width());
 	$('.product-item').css('height',42/460 * $('.products-sort').height());
@@ -32,8 +35,19 @@ function cssSet()
 	$('.product-list').css('left',$('.products-sort').width());
 	$('.product-info img').css('top',$('.product-info').height()/2 - $('.product-info img').height()/2 - 14 + 'px');
 	$('.product-info p').css('top',$('.product-info').height()/2 - $('.product-info img').height()/2 - 5 + 'px');	//7:字体大小的一半
-	$('.product-info p').css('left',$('ul.list img').width() + 25 - 14 + 'px');
+	$('.product-info p').css('left',$('ul.list img').width() + 25 - 10 + 'px');
 	$('.purchase').css('top',($('.product-info').height()-$('.purchase').height())/2 - 14 + 'px')
+	$('.channel').width($('.all-products').width());
+	$('.channel-list').width($('.products-sort').width());
+	$('li.home-channel-list-item').width($('.channel-list').width()/3 - 0.5 + 'px');
+	$('li.home-channel-list-item').height($('.channel-list').height()/2 - 1 + 'px');
+	$('.channel-pic').css('width',970/1226 * $('.all-products').width());
+	$('.channel-pic-list-content:first').css('left','0px');
+	$('.channel-pic-list-content:last').css('right','0px');
+	$('.channel-pic-list-content:eq(1)').css('left',$('ul.channel-pic-list').width()/2 - $('.channel-pic-list-content:eq(1)').width()/2);
+
+	$('.gift').css('width',$('.all-products').width());
+
 	setPhoneListWidth();
 
 }
@@ -54,7 +68,16 @@ function eventSet()
 	$('.product-info').mouseout(function(){
 		$(this).children('p').css('color','#333');
 	});
+
+	$('#right-slide').on('click',function(){
+		console.log(123123)
+		//???????????
+		$('#left-first').css('margin-left',$('.gift-content').width() * (-1) + ' !important');
+	})
+
 	showProductList();
+	itemRotatedAutomatic();
+	channelItemPic();
 }
 
 function productsShow()
@@ -401,6 +424,7 @@ function itemChanged()
 	{
 		$(uiPageItem[i]).on('click',function(){
 			clickItemIndex = $(this).attr('index');
+			clearInterval(hwnd);
 			switch(clickItemIndex)
 			{
 				case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
@@ -425,6 +449,7 @@ function itemChanged()
 	}
 
 	$('.slide-left').on('click',function(){
+		clearInterval(hwnd);
 		var currentIndex = currentItemIndex;
 		currentItemIndex = (currentIndex-1==0?"5":currentIndex-1+"");		//需返回字符串
 		switch(currentItemIndex)
@@ -449,6 +474,7 @@ function itemChanged()
 	});
 
 	$('.slide-right').on('click',function(){
+		clearInterval(hwnd);
 		var currentIndex = currentItemIndex;
 		currentItemIndex = (parseInt(currentIndex)+1==6?"1":parseInt(currentIndex)+1+"");		//需返回字符串
 		switch(currentItemIndex)
@@ -512,6 +538,47 @@ function showProductList()
 		});
 		$(productList[i]).mouseout(function(){
 			$(this).css('display','none');
+		});
+	}
+}
+
+function itemRotatedAutomatic()			//图片自动切换，直到点击后取消
+{
+	hwnd = setInterval(function(){
+		var currentIndex = currentItemIndex;
+		currentItemIndex = (parseInt(currentIndex)+1==6?"1":parseInt(currentIndex)+1+"");		//需返回字符串
+		switch(currentItemIndex)
+		{
+			case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
+			case "2":$('#bg-'+nextPic).css('background','url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)');break;
+			case "3":$('#bg-'+nextPic).css('background','url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)');break;
+			case "4":$('#bg-'+nextPic).css('background','url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)');break;
+			case "5":$('#bg-'+nextPic).css('background','url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)');break;
+			default:;
+		}
+		$(".ui-page-item[index="+currentIndex+"]").removeClass('current-item');
+		$(".ui-page-item[index="+currentItemIndex+"]").addClass('current-item');
+		$('#bg-'+currentPic).fadeOut(500,function(){
+			$(this).css('z-index','10');
+			$('#bg-'+nextPic).css('z-index','20');
+			var t = currentPic;
+			currentPic = nextPic;
+			nextPic = t;
+			$(this).fadeIn();
+		});
+	},10000);
+}
+
+function channelItemPic()
+{
+	var channelContent = $('.channel-content');
+	for(var i=0;i<channelContent.length;i++)
+	{
+		$(channelContent[i]).mouseover(function(){
+			$(this).children('img').attr('src','images/'+ $(this).attr('data') + 'hover.png');
+		});
+		$(channelContent[i]).mouseout(function(){
+			$(this).children('img').attr('src','images/'+ $(this).attr('data') +'.png');
 		});
 	}
 }

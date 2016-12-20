@@ -502,6 +502,7 @@ li.phone-list-item{
 	position: relative;
 	width: 100%;
 	height: 100%;
+	padding-left: 5px;
 }
 
 .purchase{
@@ -520,4 +521,205 @@ li.phone-list-item{
 .purchase:hover{
 	color: white;
 	background: #ff6700;
+}
+
+.channel{
+	position: relative;
+	height: 170px;
+	margin: 0 auto;
+	margin-top: 15px;
+}
+
+.channel-list{
+	position: absolute;
+	height: 100%;
+	border: 1px solid black;
+	background: #5f5750;
+}
+
+ul.home-channel-list{
+	width: 100%;
+	height: 100%;
+	list-style-type: none;
+}
+
+li.home-channel-list-item{
+	position: relative;
+	display: block;
+}
+
+.vertical-separator{
+	position: absolute;
+	display: block;
+	width: 1px;
+	height: 70px;
+	background: #665e57;
+	right: 0px;
+	top: 8px;
+}
+
+.horizontal-separator{
+	position: absolute;
+	display: block;
+	width: 64px;
+	height: 1px;
+	background: #665e57;
+	right: 10px;
+	bottom: 0px;
+}
+
+div.channel-content{
+	position: absolute;
+	width: 92%;
+	text-align: center;
+	margin: 0 auto;
+	color: rgba(255,255,255,0.7);
+	top: 15px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.channel-content:hover{
+	color: #fff;
+}
+
+.channel-pic{
+	position: absolute;
+	height: 100%;
+	/*width in js*/
+	right: 0;
+}
+
+ul.channel-pic-list{
+	list-style-type: none;
+	width: 100%;
+	height: 100%;
+}
+
+li.channel-pic-list-content{
+	position: absolute;
+	display: block;
+	height: 100%;
+	width: 32.4%;
+	cursor: pointer;
+}
+
+li.channel-pic-list-content img{
+	width: 100%;
+	height: 100%;
+}
+
+.gift{
+	height: 438px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+.gift-title{
+	position: relative;
+	width: 100%;
+	height: 58px;
+	font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+}
+
+p.gift-title-tips{
+	display: inline-block;
+	width: 75%;
+}
+
+.slide-direction{
+	position: absolute;
+	display: inline-block;
+	width: 20%;
+	right: 0px;
+	text-align: right;
+}
+
+.slide-direction img{
+	font-size: 0;
+	width: 18px;
+	height: 12px;
+	border: 1px solid #e0e0e0;
+	margin: 0;
+	padding: 5px 7px;
+}
+
+.gift-content{
+	height: 340px;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+/*	overflow: hidden;*/
+}
+
+ul.gift-content-list{
+	list-style-type: none;
+	width: 200%;
+	height: 100%;
+}
+
+li.gift-card{
+	display: block;
+	height: 95%;
+	width: 9%;
+	margin: 0 0.625%;
+	background: #fafafa;
+	text-align: center;
+	padding-top: 39px;
+	padding-bottom: 35px;
+	transition: all .2s;
+}
+
+.gift-pic{
+	width: 160px;
+	height: 160px;
+}
+
+.gift-name{
+	color: #212121;
+	font-size: 14px;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+.gift-intro{
+	height: 18px;
+	margin: 0 10px 12px;
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 15px;
+	color: #b0b0b0;
+	width: 90%;
+}
+
+.gift-price{
+	color: #ff6709;
+}
+
+#left-first{
+	margin-left: 0;
+}
+
+.one{
+	border-top: 1px solid #ffac13;
+}
+
+.two{
+	border-top: 1px solid #83c44e;
+}
+
+.three{
+	border-top: 1px solid #2196f3;
+}
+
+.four{
+	border-top: 1px solid #e53935;
+}
+
+.five{
+	border-top: 1px solid #00c0a5;
+	margin-right: 0 !important;
 }
