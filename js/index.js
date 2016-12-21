@@ -6,6 +6,8 @@ var currentItemIndex;
 var currentPic = "pic1";
 var nextPic = "pic2";
 var hwnd;
+var initDir = "right";
+var giftHwnd;
 
 function init()
 {
@@ -45,8 +47,14 @@ function cssSet()
 	$('.channel-pic-list-content:first').css('left','0px');
 	$('.channel-pic-list-content:last').css('right','0px');
 	$('.channel-pic-list-content:eq(1)').css('left',$('ul.channel-pic-list').width()/2 - $('.channel-pic-list-content:eq(1)').width()/2);
+	$('#gift-right').css('top',$('#gift-word').height()/2 - $('#gift-right').height()/2);
+	$('.my-gift-card').css('height',$('#first-gift-card').width() * 300/234);
+	$('#first-gift-card').css('height',$('#first-gift-card').width() * 614/234);
+	$('.space').css('height',$('#first-gift-card').height() - ($('.line2').height() * 2) + 'px');
+
 
 	$('.gift').css('width',$('.all-products').width());
+	$('.my-gift').css('width',1226/1366 * $('.my-gift').width());
 
 	setPhoneListWidth();
 
@@ -69,15 +77,28 @@ function eventSet()
 		$(this).children('p').css('color','#333');
 	});
 
-	$('#right-slide').on('click',function(){
-		console.log(123123)
-		//???????????
-		$('#left-first').css('margin-left',$('.gift-content').width() * (-1) + ' !important');
-	})
+	$('#right-slide').mouseover(function(){
+		$('#right-slide').attr('src','images/gift/右hover.png');
+	});
+	$('#right-slide').mouseout(function(){
+		$('#right-slide').attr('src','images/gift/右enabled.png');
+	});
+	$('#gift-slide').mouseover(function(){
+		$('#gift-word').css('color','#ff6700');
+		$('#gift-right').attr('src','images/myGift/右切换hover.png');
+	});
+	$('#gift-slide').mouseout(function(){
+		$('#gift-word').css('color','#424242');
+		$('#gift-right').attr('src','images/myGift/右切换.png');
+	});
+	
 
 	showProductList();
 	itemRotatedAutomatic();
 	channelItemPic();
+	giftRotate();
+	giftAutoRotate();
+	giftCardFloat();
 }
 
 function productsShow()
@@ -579,6 +600,95 @@ function channelItemPic()
 		});
 		$(channelContent[i]).mouseout(function(){
 			$(this).children('img').attr('src','images/'+ $(this).attr('data') +'.png');
+		});
+	}
+}
+
+function giftRotate()
+{
+	$('#right-slide').on('click',function(){
+		if(initDir == "right")
+		{
+			clearInterval(giftHwnd);			//这两句用来点击后重启计时器
+			giftAutoRotate();
+			$('#right-slide').attr('src','images/gift/右disabled.png');
+			$('#right-slide').css('cursor','default');
+			$('#right-slide').mouseover(function(){
+				$('#right-slide').attr('src','images/gift/右disabled.png');
+			});
+			$('#right-slide').mouseout(function(){
+				$('#right-slide').attr('src','images/gift/右disabled.png');
+			});
+
+			$('#left-slide').attr('src','images/gift/左enabled.png');
+			$('#left-slide').css('cursor','pointer');
+			$('#left-slide').mouseover(function(){
+				$('#left-slide').attr('src','images/gift/左hover.png');
+			});
+			$('#left-slide').mouseout(function(){
+				$('#left-slide').attr('src','images/gift/左enabled.png');
+			});
+			$('.gift-content-list').animate({'margin-left':$('.gift-content').width() * (-1)},500,'easeOutSine');
+			initDir = "left";
+		}
+	});
+
+	$('#left-slide').on('click',function(){
+		if(initDir == "left")
+		{
+			clearInterval(giftHwnd);
+			giftAutoRotate();
+			$('#left-slide').attr('src','images/gift/左disabled.png');
+			$('#left-slide').css('cursor','default');
+			$('#left-slide').mouseover(function(){
+				$('#left-slide').attr('src','images/gift/左disabled.png');
+			});
+			$('#left-slide').mouseout(function(){
+				$('#left-slide').attr('src','images/gift/左disabled.png');
+			});
+
+			$('#right-slide').attr('src','images/gift/右enabled.png');
+			$('#right-slide').css('cursor','pointer');
+			$('#right-slide').mouseover(function(){
+				$('#right-slide').attr('src','images/gift/右hover.png');
+			});
+			$('#right-slide').mouseout(function(){
+				$('#right-slide').attr('src','images/gift/右enabled.png');
+			});
+			$('.gift-content-list').animate({'margin-left':'0'},500,'easeOutSine');
+			initDir = "right";
+		}
+	});
+}
+
+function giftAutoRotate()
+{
+	giftHwnd = setInterval(function(){
+		if(initDir == "right")
+		{
+			$('#right-slide').trigger('click');
+		}
+		else
+		{
+			$('#left-slide').trigger('click');
+		}
+	},10000);
+}
+
+function giftCardFloat()				//图片悬浮
+{
+	var cards = $('.my-gift-card');
+	for(var i=0;i<cards.length;i++)
+	{
+		$(cards[i]).mouseover(function(){
+			//不放在css里是因为防止图片加载慢而影响高度
+			$(this).css('transition','all .2s linear');
+			$(this).css('transform','translate3d(0,-2px,0)');
+			$(this).css('box-shadow','0 15px 30px rgba(0,0,0,0.1)');
+		});
+		$(cards[i]).mouseout(function(){
+			$(this).css('transform','none');
+			$(this).css('box-shadow','none');
 		});
 	}
 }
