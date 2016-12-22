@@ -52,9 +52,15 @@ function cssSet()
 	$('#first-gift-card').css('height',$('#first-gift-card').width() * 614/234);
 	$('.space').css('height',$('#first-gift-card').height() - ($('.line2').height() * 2) + 'px');
 
+	$('.card').css('width','18.6%');
+	$('.card').css('height',$('.card').width() * 300/234);
+	$('.listening-cards').css('height',$('.card').height() * 2 + $('.separator-card').height());
+	$('.listening').css('height',$('.title').height() + $('.listening-cards').height() + 10 +'px');
+	$('.last-in-line2').css('height',($('.card').height() - $('.separator-card').height()) / 2 - 1 + 'px');
 
 	$('.gift').css('width',$('.all-products').width());
 	$('.my-gift').css('width',1226/1366 * $('.my-gift').width());
+	$('.listening').css('width',$('.my-gift').width());
 
 	setPhoneListWidth();
 
@@ -91,6 +97,7 @@ function eventSet()
 		$('#gift-word').css('color','#424242');
 		$('#gift-right').attr('src','images/myGift/右切换.png');
 	});
+
 	
 
 	showProductList();
@@ -99,6 +106,10 @@ function eventSet()
 	giftRotate();
 	giftAutoRotate();
 	giftCardFloat();
+	listeningTitle();
+	cardFloat();
+	listeningSwitchCard();
+	$('#listening-hot').trigger('mouseover');
 }
 
 function productsShow()
@@ -691,4 +702,379 @@ function giftCardFloat()				//图片悬浮
 			$(this).css('box-shadow','none');
 		});
 	}
+}
+
+function listeningTitle()
+{
+	var titleItems = $('.title-item');
+	for(var i=0;i<titleItems.length;i++)
+	{
+		$(titleItems[i]).mouseover(function(){
+			for(var j=0;j<titleItems.length;j++)
+			{
+				if($(titleItems[j]).hasClass('active-title'))
+				{
+					$(titleItems[j]).removeClass('active-title');
+				}
+			}
+			$(this).addClass('active-title');
+		});
+	}
+}
+
+function cardFloat()					//所有card的悬浮效果
+{
+	var cards = $('.card');
+	for(var i=0;i<cards.length;i++)
+	{
+		$(cards[i]).mouseover(function(){
+			//不放在css里是因为防止图片加载慢而影响高度
+			$(this).css('transition','all .2s linear');
+			$(this).css('transform','translate3d(0,-2px,0)');
+			$(this).css('box-shadow','0 15px 30px rgba(0,0,0,0.1)');
+			if($(this).find('.comment-content').text())
+			{
+				$(this).find('.comment').css({'height':'85px','opacity':'1'});
+			}
+		});
+		$(cards[i]).mouseout(function(){
+			$(this).css('transform','none');
+			$(this).css('box-shadow','none');
+			if($(this).find('.comment-content').text())
+			{
+				$(this).find('.comment').css({'height':'0px','opacity':'0'});
+			}
+		});
+	}
+}
+
+function listeningSwitchCard()
+{
+	$('#listening-hot').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.listening-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.listening-cards .card:eq(1) .label').addClass('new-product');
+		$('.listening-cards .card:eq(1) .label').text('新品');
+		$('.listening-cards .card:eq(1) img').attr('src','images/listening/pms_1478248721.42297795.jpg');
+		$('.listening-cards .card:eq(1) .name').text('小米蓝牙耳机青春版');
+		$('.listening-cards .card:eq(1) .price').text('59元');
+		$('.listening-cards .card:eq(1) .population').text('1.1万人评价');
+		$('.listening-cards .card:eq(1) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(1) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(2) .label').addClass('hide');
+		$('.listening-cards .card:eq(2) .label').text('新品');
+		$('.listening-cards .card:eq(2) img').attr('src','images/listening/T1pZbvBTET1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(2) .name').text('小米移动电源5000mAh');
+		$('.listening-cards .card:eq(2) .price').text('49元');
+		$('.listening-cards .card:eq(2) .population').text('9.5万人评价');
+		$('.listening-cards .card:eq(2) .comment .comment-content').text('(⊙o⊙)…呃。我敢说被人抢了么。这都第三个了。第一...');
+		$('.listening-cards .card:eq(2) .comment .comment-author').text(' 来自于 糖糖果果儿 的评价 ');
+
+		$('.listening-cards .card:eq(3) .label').addClass('new-product');
+		$('.listening-cards .card:eq(3) .label').text('新品');
+		$('.listening-cards .card:eq(3) img').attr('src','images/listening/pms_1478510064.36397738.jpg');
+		$('.listening-cards .card:eq(3) .name').text('小米圈铁耳机Pro');
+		$('.listening-cards .card:eq(3) .price').text('149元');
+		$('.listening-cards .card:eq(3) .population').text('3900人评价');
+		$('.listening-cards .card:eq(3) .comment .comment-content').text('新一代超良心圈铁耳机！！！外观超酷！感觉很高端，音质...');
+		$('.listening-cards .card:eq(3) .comment .comment-author').text(' 来自于 小笼包 的评价 ');
+
+		$('.listening-cards .card:eq(4) .label').addClass('hide');
+		$('.listening-cards .card:eq(4) .label').text('新品');
+		$('.listening-cards .card:eq(4) img').attr('src','images/listening/T1F5K_BjVv1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(4) .name').text('小米小钢炮蓝牙音箱2');
+		$('.listening-cards .card:eq(4) .price').text('129元');
+		$('.listening-cards .card:eq(4) .population').text('1.8万人评价');
+		$('.listening-cards .card:eq(4) .comment .comment-content').text('物流超快，包装一打开，我就闻到了一缕口红的清香，陶醉...');
+		$('.listening-cards .card:eq(4) .comment .comment-author').text(' 来自于 588262758 的评价 ');
+
+		$('.listening-cards .card:eq(6) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(6) .label').text('享9.6折');
+		$('.listening-cards .card:eq(6) img').attr('src','images/listening/T1ycK_BjYv1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(6) .name').text('小米圈铁耳机');
+		$('.listening-cards .card:eq(6) .price').html('94元 <s>99元</s>');
+		$('.listening-cards .card:eq(6) .population').text('2.8万人评价');
+		$('.listening-cards .card:eq(6) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(6) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(7) .label').addClass('hide');
+		$('.listening-cards .card:eq(7) .label').text('新品');
+		$('.listening-cards .card:eq(7) img').attr('src','images/listening/T1MDK_B_YT1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(7) .name').text('小米蓝牙音箱');
+		$('.listening-cards .card:eq(7) .price').text('199元');
+		$('.listening-cards .card:eq(7) .population').text('2.2万人评价');
+		$('.listening-cards .card:eq(7) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(7) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(8) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(8) .label').text(' 享9折 ');
+		$('.listening-cards .card:eq(8) img').attr('src','images/listening/T1A.A_BKYT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(8) .name').text('小米方盒子蓝牙音箱');
+		$('.listening-cards .card:eq(8) .price').html('89元 <s>99元</s>');
+		$('.listening-cards .card:eq(8) .population').text('1.6万人评价');
+		$('.listening-cards .card:eq(8) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(8) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(9) .aaa-intro').text('小米车载充电器');
+		$('.listening-cards .card:eq(9) .aaa-price').text('49元');
+		$('.listening-cards .card:eq(9) .aaa').attr('src','images/listening/T142A_BXEv1RXrhCrK.jpg');
+
+		$('.listening-cards .card:eq(10) .bbb-price').text('热门');
+	});
+
+	$('#listening-earphone').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.listening-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.listening-cards .card:eq(1) .label').addClass('new-product');
+		$('.listening-cards .card:eq(1) .label').text('新品');
+		$('.listening-cards .card:eq(1) img').attr('src','images/listening/pms_1479724763.43233402!220x220.jpg');
+		$('.listening-cards .card:eq(1) .name').text('小米网络音响');
+		$('.listening-cards .card:eq(1) .price').html('399元');
+		$('.listening-cards .card:eq(1) .population').text('601人评价');
+		$('.listening-cards .card:eq(1) .comment .comment-content').text('音效超级无敌好，低音震撼！高音亮！性价比无敌！');
+		$('.listening-cards .card:eq(1) .comment .comment-author').text(' 来自于 江  波 的评价 ');
+
+		$('.listening-cards .card:eq(2) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(2) .label').text('享9.3折');
+		$('.listening-cards .card:eq(2) img').attr('src','images/listening/T1SkV_BCd_1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(2) .name').text('小米胶囊耳机');
+		$('.listening-cards .card:eq(2) .price').html('64元 <s>69元</s>');
+		$('.listening-cards .card:eq(2) .population').text('');
+		$('.listening-cards .card:eq(2) .comment .comment-content').text('很小巧 像不喜欢戴活塞的人可以试试这种~很舒服包装还...');
+		$('.listening-cards .card:eq(2) .comment .comment-author').text(' 来自于 鹤唳 的评价 ');
+
+		$('.listening-cards .card:eq(3) .label').addClass('new-product');
+		$('.listening-cards .card:eq(3) .label').text('新品');
+		$('.listening-cards .card:eq(3) img').attr('src','images/listening/pms_1478510064.36397738.jpg');
+		$('.listening-cards .card:eq(3) .name').text('小米圈铁耳机Pro');
+		$('.listening-cards .card:eq(3) .price').html('149元');
+		$('.listening-cards .card:eq(3) .population').text('3900人评价');
+		$('.listening-cards .card:eq(3) .comment .comment-content').text('耳机真心不错。上午下单下午送到。快递速度真是快的想不...');
+		$('.listening-cards .card:eq(3) .comment .comment-author').text(' 来自于 858404180 的评价 ');
+
+		$('.listening-cards .card:eq(4) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(4) .label').text('享9折');
+		$('.listening-cards .card:eq(4) img').attr('src','images/listening/T1IdZgB5hv1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(4) .name').text('小米随身蓝牙音箱');
+		$('.listening-cards .card:eq(4) .price').html('59元 <s>69元</s>');
+		$('.listening-cards .card:eq(4) .population').text('');
+		$('.listening-cards .card:eq(4) .comment .comment-content').text('超级喜欢！小巧玲珑！音质完美！不知道为什么！只要是小...');
+		$('.listening-cards .card:eq(4) .comment .comment-author').text(' 来自于 田密 的评价 ');
+
+		$('.listening-cards .card:eq(6) .label').addClass('hide');
+		$('.listening-cards .card:eq(6) .label').text('享9.6折');
+		$('.listening-cards .card:eq(6) img').attr('src','images/listening/T1Tfd_BjAv1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(6) .name').text('小米小钢炮蓝牙音箱2');
+		$('.listening-cards .card:eq(6) .price').html('129元');
+		$('.listening-cards .card:eq(6) .population').text('');
+		$('.listening-cards .card:eq(6) .comment .comment-content').text('物流超快，包装一打开，我就闻到了一缕口红的清香，陶醉...');
+		$('.listening-cards .card:eq(6) .comment .comment-author').text(' 来自于 588262758 的评价 ');
+
+		$('.listening-cards .card:eq(7) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(7) .label').text('享9折');
+		$('.listening-cards .card:eq(7) img').attr('src','images/listening/T1A.A_BKYT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(7) .name').text('方盒子音箱');
+		$('.listening-cards .card:eq(7) .price').html('89元 <s>99元</s>');
+		$('.listening-cards .card:eq(7) .population').text('');
+		$('.listening-cards .card:eq(7) .comment .comment-content').text('声音可以小到只有自己心里能听见，声音可以大到让大家听...');
+		$('.listening-cards .card:eq(7) .comment .comment-author').text(' 来自于 243235061 的评价 ');
+
+		$('.listening-cards .card:eq(8) .label').addClass('new-product');
+		$('.listening-cards .card:eq(8) .label').text(' 新品 ');
+		$('.listening-cards .card:eq(8) img').attr('src','images/listening/pms_1481098202.44798045!220x220.jpg');
+		$('.listening-cards .card:eq(8) .name').text('ROIDMI音乐蓝牙车充');
+		$('.listening-cards .card:eq(8) .price').html('99元');
+		$('.listening-cards .card:eq(8) .population').text('26人评价');
+		$('.listening-cards .card:eq(8) .comment .comment-content').text('东西不错，对车載音乐提升好处多，');
+		$('.listening-cards .card:eq(8) .comment .comment-author').text(' 来自于 1194950505 的评价 ');
+
+		$('.listening-cards .card:eq(9) .aaa-intro').text('小米蓝牙音箱');
+		$('.listening-cards .card:eq(9) .aaa-price').text('199元');
+		$('.listening-cards .card:eq(9) .aaa').attr('src','images/listening/T1MDK_B_YT1RXrhCrK.jpg');
+
+		$('.listening-cards .card:eq(10) .bbb-price').text('耳机音箱');
+	});
+
+	$('#listening-power').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.listening-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.listening-cards .card:eq(1) .label').addClass('hide');
+		$('.listening-cards .card:eq(1) .label').text('新品');
+		$('.listening-cards .card:eq(1) img').attr('src','images/listening/T1AcE_Bghv1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(1) .name').text('移动电源5000mAh');
+		$('.listening-cards .card:eq(1) .price').html('49元');
+		$('.listening-cards .card:eq(1) .population').text('');
+		$('.listening-cards .card:eq(1) .comment .comment-content').text('之前都不知道，还以为是18650电芯的。拿到手一看这...');
+		$('.listening-cards .card:eq(1) .comment .comment-author').text(' 来自于 ywtdzh 的评价 ');
+
+		$('.listening-cards .card:eq(2) .label').addClass('hide');
+		$('.listening-cards .card:eq(2) .label').text('享9.3折');
+		$('.listening-cards .card:eq(2) img').attr('src','images/listening/T1atV_BQLT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(2) .name').text('ZMI移动电源10000mAh');
+		$('.listening-cards .card:eq(2) .price').html('99元');
+		$('.listening-cards .card:eq(2) .population').text('3908人评价');
+		$('.listening-cards .card:eq(2) .comment .comment-content').text('用了一个月了，效果理想，可以充m3两次完整电量，还绰...');
+		$('.listening-cards .card:eq(2) .comment .comment-author').text(' 来自于 287358680 的评价 ');
+
+		$('.listening-cards .card:eq(3) .label').addClass('new-product');
+		$('.listening-cards .card:eq(3) .label').text('新品');
+		$('.listening-cards .card:eq(3) img').attr('src','images/listening/pms_1481273468.72564539!220x220.jpg');
+		$('.listening-cards .card:eq(3) .name').text('小米移动电源10000mAh高配版');
+		$('.listening-cards .card:eq(3) .price').html('149元');
+		$('.listening-cards .card:eq(3) .population').text('64人评价');
+		$('.listening-cards .card:eq(3) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(3) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(4) .label').addClass('new-product');
+		$('.listening-cards .card:eq(4) .label').text('新品');
+		$('.listening-cards .card:eq(4) img').attr('src','images/listening/pms_1482110626.95581660!220x220.jpg');
+		$('.listening-cards .card:eq(4) .name').text('20000mAh小米移动电源2');
+		$('.listening-cards .card:eq(4) .price').html('149元');
+		$('.listening-cards .card:eq(4) .population').text('209人评价');
+		$('.listening-cards .card:eq(4) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(4) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(6) .label').addClass('new-product');
+		$('.listening-cards .card:eq(6) .label').text('新品');
+		$('.listening-cards .card:eq(6) img').attr('src','images/listening/pms_1476688190.21955893!220x220.jpg');
+		$('.listening-cards .card:eq(6) .name').text('10000mAh小米移动电源2');
+		$('.listening-cards .card:eq(6) .price').html('79元');
+		$('.listening-cards .card:eq(6) .population').text('');
+		$('.listening-cards .card:eq(6) .comment .comment-content').text('充电速度优于原装充电器，颜值高于第一代，上午下单下午...');
+		$('.listening-cards .card:eq(6) .comment .comment-author').text(' 来自于 180959997 的评价 ');
+
+		$('.listening-cards .card:eq(7) .label').addClass('hide');
+		$('.listening-cards .card:eq(7) .label').text('享9折');
+		$('.listening-cards .card:eq(7) img').attr('src','images/listening/T1jMbjB5Jv1RXrhCrK.jpg');
+		$('.listening-cards .card:eq(7) .name').text('小米插线板（3孔位+USB）');
+		$('.listening-cards .card:eq(7) .price').html('49元');
+		$('.listening-cards .card:eq(7) .population').text('');
+		$('.listening-cards .card:eq(7) .comment .comment-content').text('3个usb插口正好给手机和pad充电，隐藏式白色指示...');
+		$('.listening-cards .card:eq(7) .comment .comment-author').text(' 来自于 prinoac 的评价 ');
+
+		$('.listening-cards .card:eq(8) .label').addClass('hide');
+		$('.listening-cards .card:eq(8) .label').text(' 新品 ');
+		$('.listening-cards .card:eq(8) img').attr('src','images/listening/pms_1469410847.29693876!220x220.jpg');
+		$('.listening-cards .card:eq(8) .name').text('USB Type-C充电套装');
+		$('.listening-cards .card:eq(8) .price').html('15元');
+		$('.listening-cards .card:eq(8) .population').text('');
+		$('.listening-cards .card:eq(8) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(8) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(9) .aaa-intro').text('小米插线板 5孔位');
+		$('.listening-cards .card:eq(9) .aaa-price').text('39元');
+		$('.listening-cards .card:eq(9) .aaa').attr('src','images/listening/T1Ihd_BTCv1RXrhCrK.jpg');
+
+		$('.listening-cards .card:eq(10) .bbb-price').text('电源');
+	});
+
+	$('#listening-battery').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.listening-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.listening-cards .card:eq(1) .label').addClass('hide');
+		$('.listening-cards .card:eq(1) .label').text('新品');
+		$('.listening-cards .card:eq(1) img').attr('src','images/listening/T1sRhTBsYT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(1) .name').text('金士顿8GB存储卡（Class4）');
+		$('.listening-cards .card:eq(1) .price').html('24.9元');
+		$('.listening-cards .card:eq(1) .population').text('70人评价');
+		$('.listening-cards .card:eq(1) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(1) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(2) .label').addClass('hide');
+		$('.listening-cards .card:eq(2) .label').text('享9.3折');
+		$('.listening-cards .card:eq(2) img').attr('src','images/listening/T1GGAgByhv1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(2) .name').text('SanDisk 32GB高速存储卡');
+		$('.listening-cards .card:eq(2) .price').html('69.9元');
+		$('.listening-cards .card:eq(2) .population').text('9671人评价');
+		$('.listening-cards .card:eq(2) .comment .comment-content').text('货收到了，一直没评价，购买的商品和网上的一样，运行也...');
+		$('.listening-cards .card:eq(2) .comment .comment-author').text(' 来自于 陆国政 的评价 ');
+
+		$('.listening-cards .card:eq(3) .label').addClass('hide');
+		$('.listening-cards .card:eq(3) .label').text('新品');
+		$('.listening-cards .card:eq(3) img').attr('src','images/listening/T1xxVTBghv1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(3) .name').text('彩虹5号电池（10粒装）');
+		$('.listening-cards .card:eq(3) .price').html('9.9元');
+		$('.listening-cards .card:eq(3) .population').text('');
+		$('.listening-cards .card:eq(3) .comment .comment-content').text('良芯（心）产品啊！实用细心，超赞！');
+		$('.listening-cards .card:eq(3) .comment .comment-author').text(' 来自于 帅哥娃 的评价 ');
+
+		$('.listening-cards .card:eq(4) .label').addClass('hide');
+		$('.listening-cards .card:eq(4) .label').text('新品');
+		$('.listening-cards .card:eq(4) img').attr('src','images/listening/T178EjBjVT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(4) .name').text('彩虹7号电池（10粒装）');
+		$('.listening-cards .card:eq(4) .price').html('9.9元');
+		$('.listening-cards .card:eq(4) .population').text('');
+		$('.listening-cards .card:eq(4) .comment .comment-content').text('颜色亮丽，价格便宜，使用很方便好用。');
+		$('.listening-cards .card:eq(4) .comment .comment-author').text(' 来自于 谁会问 的评价 ');
+
+		$('.listening-cards .card:eq(6) .label').addClass('hide');
+		$('.listening-cards .card:eq(6) .label').text('新品');
+		$('.listening-cards .card:eq(6) img').attr('src','images/listening/T1sRhTBsYT1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(6) .name').text('SanDisk 16GB存储卡（Class4）');
+		$('.listening-cards .card:eq(6) .price').html('31.9元');
+		$('.listening-cards .card:eq(6) .population').text('');
+		$('.listening-cards .card:eq(6) .comment .comment-content').text('物美价廉，正品行货，发货迅速');
+		$('.listening-cards .card:eq(6) .comment .comment-author').text(' 来自于 sharph 的评价 ');
+
+		$('.listening-cards .card:eq(7) .label').addClass('cheaper-price');
+		$('.listening-cards .card:eq(7) .label').text('享9折');
+		$('.listening-cards .card:eq(7) img').attr('src','images/listening/pms_1463731356.45818748!220x220.jpg');
+		$('.listening-cards .card:eq(7) .name').text('镍氢充电电池套装');
+		$('.listening-cards .card:eq(7) .price').html('88元 <s>98元</s>');
+		$('.listening-cards .card:eq(7) .population').text('');
+		$('.listening-cards .card:eq(7) .comment .comment-content').text('');
+		$('.listening-cards .card:eq(7) .comment .comment-author').text('');
+
+		$('.listening-cards .card:eq(8) .label').addClass('hide');
+		$('.listening-cards .card:eq(8) .label').text(' 新品 ');
+		$('.listening-cards .card:eq(8) img').attr('src','images/listening/T142A_BXEv1RXrhCrK!220x220.jpg');
+		$('.listening-cards .card:eq(8) .name').text('小米车载充电器');
+		$('.listening-cards .card:eq(8) .price').html('49元');
+		$('.listening-cards .card:eq(8) .population').text('');
+		$('.listening-cards .card:eq(8) .comment .comment-content').text('挺好，挺有质感，充电也快，非常满意');
+		$('.listening-cards .card:eq(8) .comment .comment-author').text(' 来自于 975550705 的评价 ');
+
+		$('.listening-cards .card:eq(9) .aaa-intro').text('小米USB充电器（4口）');
+		$('.listening-cards .card:eq(9) .aaa-price').text('69元');
+		$('.listening-cards .card:eq(9) .aaa').attr('src','images/listening/T1vFEjBbWT1RXrhCrK!220x220.jpg');
+
+		$('.listening-cards .card:eq(10) .bbb-price').text('电池存储卡');
+	});
 }

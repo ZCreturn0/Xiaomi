@@ -872,3 +872,244 @@ s{
 #new{
 	background-color: #83c44e;
 }
+
+.listening{
+	height: 1500px;			/*total height added to get this*/
+	margin:  0 auto;
+	margin-top: 40px;
+}
+
+/*******************  public css start  ********************/
+
+.title{
+	width: 100%;
+	position: relative;
+	height: 58px;			/*total height added*/
+	margin-bottom: 10px;	/*total height added*/
+}
+
+.title-tips{
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	text-align: left;
+	font-size: 22px;
+    font-weight: 200;
+    line-height: 58px;
+    color: #333;
+}
+
+ul.title-items{
+	position: absolute;
+	list-style-type: none;
+	display: inline-block;
+	right: 0;
+	text-align: right;
+}
+
+li.title-item{
+	display: block;
+	margin: 0 0 0 30px;
+	color: #424242;
+	border-bottom: 2px solid transparent;
+	transition: border-color .5s;
+    cursor: pointer;
+    font-size: 16px;
+    padding-top: 18px;
+}
+
+.active-title{
+	color: #ff6700 !important;
+    border-bottom: 2px solid #ff6700 !important;
+}
+
+.card{
+	/*width and height in js*/
+	background: white;
+	float: left;
+	margin: 0 0.875%;
+	text-align: center;
+	position: relative;
+}
+
+.separator-card{
+	float: left;
+	width: 18.6%;
+	height: 15px;
+	margin: 0 0.875%;
+	background: #f5f5f5;
+}
+
+.first-in-line1,.first-in-line2{
+	margin-left: 0;
+}
+
+.last-in-line1,.last-in-line2{
+	margin-right: 0;
+}
+
+.last-separator-card{
+	margin-right: 0;
+}
+
+.card>img{
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+
+.first-in-line1>img,.first-in-line2>img{
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.label{
+	display: block;
+    width: 64px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(131, 196, 78);
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.card .name{
+	color: rgb(51, 51, 51);
+	cursor: pointer;
+}
+
+.card .price{
+	text-align: center;
+    color: rgb(255, 103, 0);
+    margin: 0px 10px 10px;
+}
+
+.card .population{
+	font-size: 12px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(176, 176, 176);
+    margin: 0px 10px;
+    overflow: hidden;
+}
+
+.card .comment{
+	position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 3;
+    width: 100%;
+    height: 0px;	/*to 85*/
+    font-size: 12px;
+    opacity: 0;		/*to 1*/
+    overflow: hidden;
+    background: rgb(255, 103, 0);
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.comment-content{
+	margin-bottom: 5px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 5px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    padding: 8px 30px 0px;
+}
+
+.comment-author{
+	text-align: left;
+	padding: 0px 30px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.new-product{
+	background-color: rgb(131, 196, 78) !important;
+}
+
+.cheaper-price{
+	background-color: rgb(229, 57, 53) !important;
+}
+
+.free-fee{
+	background-color: rgb(255, 172, 19) !important;
+}
+
+.hide{
+	visibility: hidden !important;
+}
+
+.aaa-intro{
+	display: block;
+	position: absolute;
+	top: 40px;
+	left: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    width: 94px;
+    text-align: left;
+}
+
+.aaa-price{
+	font-size: 12px;
+    color: rgb(255, 103, 0);
+    position: absolute;
+    top: 65px;
+    left: 30px;
+}
+
+.aaa{
+	width: 80px !important;
+	height: 80px !important;
+	position: absolute;
+	right: 10px;
+	top: 30px;
+}
+
+.bbb-intro{
+	display: block;
+	position: absolute;
+	top: 40px;
+	left: 30px;
+    cursor: pointer;
+    width: 94px;
+    text-align: left;
+    font-size: 18px;
+    color: rgb(51, 51, 51);
+}
+
+.bbb-price{
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    font-size: 12px;
+    color: rgb(117, 117, 117);
+    cursor: pointer;
+}
+
+.bbb{
+	width: 48px !important;
+	height: 48px !important;
+	position: absolute;
+	right: 35px;
+	top: 30px;
+}
+
+
+
+/*******************  public css end  ********************/
+
+.listening-cards{
+	width: 100%;
+	/*height*/			/*total height added*/
+}
