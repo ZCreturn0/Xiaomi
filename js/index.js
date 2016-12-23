@@ -61,6 +61,7 @@ function cssSet()
 	$('.gift').css('width',$('.all-products').width());
 	$('.my-gift').css('width',1226/1366 * $('.my-gift').width());
 	$('.listening').css('width',$('.my-gift').width());
+	$('.parts').css('width',$('.my-gift').width());
 
 	setPhoneListWidth();
 
@@ -110,6 +111,8 @@ function eventSet()
 	cardFloat();
 	listeningSwitchCard();
 	$('#listening-hot').trigger('mouseover');
+	partsSwitchCard();
+	$('#parts-hot').trigger('mouseover');
 }
 
 function productsShow()
@@ -712,7 +715,7 @@ function listeningTitle()
 		$(titleItems[i]).mouseover(function(){
 			for(var j=0;j<titleItems.length;j++)
 			{
-				if($(titleItems[j]).hasClass('active-title'))
+				if($(titleItems[j]).hasClass('active-title') && $(titleItems[j]).attr('group') == $(this).attr('group'))
 				{
 					$(titleItems[j]).removeClass('active-title');
 				}
@@ -1076,5 +1079,336 @@ function listeningSwitchCard()
 		$('.listening-cards .card:eq(9) .aaa').attr('src','images/listening/T1vFEjBbWT1RXrhCrK!220x220.jpg');
 
 		$('.listening-cards .card:eq(10) .bbb-price').text('电池存储卡');
+	});
+}
+
+function partsSwitchCard()
+{
+	$('#parts-hot').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.parts-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.parts-cards .card:eq(1) .label').addClass('hide');
+		$('.parts-cards .card:eq(1) .label').text('新品');
+		$('.parts-cards .card:eq(1) img').attr('src','images/parts/pms_1482221011.26064844.jpg');
+		$('.parts-cards .card:eq(1) .name').text('小米指环支架');
+		$('.parts-cards .card:eq(1) .price').text('19元');
+		$('.parts-cards .card:eq(1) .population').text('2434人评价');
+		$('.parts-cards .card:eq(1) .comment .comment-content').text('');
+		$('.parts-cards .card:eq(1) .comment .comment-author').text('');
+
+		$('.parts-cards .card:eq(2) .label').addClass('hide');
+		$('.parts-cards .card:eq(2) .label').text('新品');
+		$('.parts-cards .card:eq(2) img').attr('src','images/parts/pms_1477560322.75674062.jpg');
+		$('.parts-cards .card:eq(2) .name').text('小米USB快速充电数据线');
+		$('.parts-cards .card:eq(2) .price').text('19元');
+		$('.parts-cards .card:eq(2) .population').text('1296人评价');
+		$('.parts-cards .card:eq(2) .comment .comment-content').text('漂亮，美观，使用非常方便');
+		$('.parts-cards .card:eq(2) .comment .comment-author').text(' 来自于 350636267 的评价 ');
+
+		$('.parts-cards .card:eq(3) .label').addClass('hide');
+		$('.parts-cards .card:eq(3) .label').text('新品');
+		$('.parts-cards .card:eq(3) img').attr('src','images/parts/pms_1474430362.70018703.jpg');
+		$('.parts-cards .card:eq(3) .name').text('小米自拍杆（线控版）');
+		$('.parts-cards .card:eq(3) .price').text('49元');
+		$('.parts-cards .card:eq(3) .population').text('3117人评价');
+		$('.parts-cards .card:eq(3) .comment .comment-content').text('');
+		$('.parts-cards .card:eq(3) .comment .comment-author').text('');
+
+		$('.parts-cards .card:eq(4) .label').addClass('hide');
+		$('.parts-cards .card:eq(4) .label').text('新品');
+		$('.parts-cards .card:eq(4) img').attr('src','images/parts/T1_WhgBb_T1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(4) .name').text('青米USB快速充电数据线');
+		$('.parts-cards .card:eq(4) .price').text('9.9~14.9元');
+		$('.parts-cards .card:eq(4) .population').text('1.8万人评价');
+		$('.parts-cards .card:eq(4) .comment .comment-content').text('很喜欢，很精致，很好用！');
+		$('.parts-cards .card:eq(4) .comment .comment-author').text(' 来自于 334530729 的评价 ');
+
+		$('.parts-cards .card:eq(6) .label').addClass('hide');
+		$('.parts-cards .card:eq(6) .label').text('享9.6折');
+		$('.parts-cards .card:eq(6) img').attr('src','images/parts/T1zL_vByCT1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(6) .name').text('小米随身WIFI');
+		$('.parts-cards .card:eq(6) .price').html('19.9元');
+		$('.parts-cards .card:eq(6) .population').text('30.2万人评价');
+		$('.parts-cards .card:eq(6) .comment .comment-content').text('很不错，用起来很方便，走到哪儿用到哪儿，节省了好多流...');
+		$('.parts-cards .card:eq(6) .comment .comment-author').text(' 来自于 朔之故里 的评价 ');
+
+		$('.parts-cards .card:eq(7) .label').addClass('hide');
+		$('.parts-cards .card:eq(7) .label').text('新品');
+		$('.parts-cards .card:eq(7) img').attr('src','images/parts/T1Zp__B5Ev1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(7) .name').text('ZMI无限拓展数据线 120cm');
+		$('.parts-cards .card:eq(7) .price').text('29元');
+		$('.parts-cards .card:eq(7) .population').text('5736人评价');
+		$('.parts-cards .card:eq(7) .comment .comment-content').text('');
+		$('.parts-cards .card:eq(7) .comment .comment-author').text('');
+
+		$('.parts-cards .card:eq(8) .label').addClass('hide');
+		$('.parts-cards .card:eq(8) .label').text(' 享9折 ');
+		$('.parts-cards .card:eq(8) img').attr('src','images/parts/pms_1469694895.01922815.jpg');
+		$('.parts-cards .card:eq(8) .name').text('5000mAh小米移动电源保护套');
+		$('.parts-cards .card:eq(8) .price').html('19.9元');
+		$('.parts-cards .card:eq(8) .population').text('186人评价');
+		$('.parts-cards .card:eq(8) .comment .comment-content').text('');
+		$('.parts-cards .card:eq(8) .comment .comment-author').text('');
+
+		$('.parts-cards .card:eq(9) .aaa-intro').text('小米5 钢化玻璃贴膜(0.22mm)');
+		$('.parts-cards .card:eq(9) .aaa-price').text('29元');
+		$('.parts-cards .card:eq(9) .aaa').attr('src','images/parts/T1t2K_B4L_1RXrhCrK.jpg');
+
+		$('.parts-cards .card:eq(10) .bbb-price').text('热门');
+	});
+
+	$('#parts-earphone').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.parts-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.parts-cards .card:eq(1) .label').addClass('hide');
+		$('.parts-cards .card:eq(1) .label').text('新品');
+		$('.parts-cards .card:eq(1) img').attr('src','images/parts/T12AWgB5Vv1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(1) .name').text('小米手机5 智能翻盖保护套');
+		$('.parts-cards .card:eq(1) .price').html('49元');
+		$('.parts-cards .card:eq(1) .population').text('');
+		$('.parts-cards .card:eq(1) .comment .comment-content').text('很不错，很好用。已推荐朋友使用。');
+		$('.parts-cards .card:eq(1) .comment .comment-author').text(' 来自于 舊時書生 的评价 ');
+
+		$('.parts-cards .card:eq(2) .label').addClass('hide');
+		$('.parts-cards .card:eq(2) .label').text('享9.3折');
+		$('.parts-cards .card:eq(2) img').attr('src','images/parts/T1XVWjBCYv1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(2) .name').text('小米Max 智能显示保护套');
+		$('.parts-cards .card:eq(2) .price').html('59元');
+		$('.parts-cards .card:eq(2) .population').text('8391人评价');
+		$('.parts-cards .card:eq(2) .comment .comment-content').text('这个唤醒保护套功能还真不错~~给家人买的，等米ＭＡＸ...');
+		$('.parts-cards .card:eq(2) .comment .comment-author').text(' 来自于 姮Fiona.mo 的评价 ');
+
+		$('.parts-cards .card:eq(3) .label').addClass('cheaper-price');
+		$('.parts-cards .card:eq(3) .label').text('享6折');
+		$('.parts-cards .card:eq(3) img').attr('src','images/parts/pms_1469787847.44636521!220x220.jpg');
+		$('.parts-cards .card:eq(3) .name').text('红米Pro 智能显示保护套');
+		$('.parts-cards .card:eq(3) .price').html('59元');
+		$('.parts-cards .card:eq(3) .population').text('1448人评价');
+		$('.parts-cards .card:eq(3) .comment .comment-content').text('又是一款精品，喜欢，小米值得拥有！');
+		$('.parts-cards .card:eq(3) .comment .comment-author').text(' 来自于 174473315 的评价 ');
+
+		$('.parts-cards .card:eq(4) .label').addClass('hide');
+		$('.parts-cards .card:eq(4) .label').text('享9折');
+		$('.parts-cards .card:eq(4) img').attr('src','images/parts/T18sWvBTxv1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(4) .name').text('红米3高配版 炫彩翻盖保护套');
+		$('.parts-cards .card:eq(4) .price').html('39元');
+		$('.parts-cards .card:eq(4) .population').text('7214人评价');
+		$('.parts-cards .card:eq(4) .comment .comment-content').text('这个我感觉是我买的性价比最好的手机外套了');
+		$('.parts-cards .card:eq(4) .comment .comment-author').text(' 来自于 煎饼 的评价 ');
+
+		$('.parts-cards .card:eq(6) .label').addClass('hide');
+		$('.parts-cards .card:eq(6) .label').text('享9.6折');
+		$('.parts-cards .card:eq(6) img').attr('src','images/parts/T10Eb_BmAv1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(6) .name').text('红米Note3 炫彩翻页保护套');
+		$('.parts-cards .card:eq(6) .price').html('39元');
+		$('.parts-cards .card:eq(6) .population').text('');
+		$('.parts-cards .card:eq(6) .comment .comment-content').text('挺不错的。手感和做工都满意！支持一下……');
+		$('.parts-cards .card:eq(6) .comment .comment-author').text(' 来自于 846245880 的评价 ');
+
+		$('.parts-cards .card:eq(7) .label').addClass('hide');
+		$('.parts-cards .card:eq(7) .label').text('享9折');
+		$('.parts-cards .card:eq(7) img').attr('src','images/parts/T1WLx_BgVv1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(7) .name').text('红米3标准版 炫彩翻盖保护套');
+		$('.parts-cards .card:eq(7) .price').html('39元');
+		$('.parts-cards .card:eq(7) .population').text('7312人评价');
+		$('.parts-cards .card:eq(7) .comment .comment-content').text('质量很好，老婆很喜欢');
+		$('.parts-cards .card:eq(7) .comment .comment-author').text(' 来自于 风中的云345 的评价 ');
+
+		$('.parts-cards .card:eq(8) .label').addClass('new-product');
+		$('.parts-cards .card:eq(8) .label').text(' 新品 ');
+		$('.parts-cards .card:eq(8) img').attr('src','images/parts/pms_1478582944.11632313!220x220.jpg');
+		$('.parts-cards .card:eq(8) .name').text('红米4标准版 翻盖保护套');
+		$('.parts-cards .card:eq(8) .price').html('49元');
+		$('.parts-cards .card:eq(8) .population').text('166人评价');
+		$('.parts-cards .card:eq(8) .comment .comment-content').text('非常喜欢！质量很好！到货速度也快！大爱');
+		$('.parts-cards .card:eq(8) .comment .comment-author').text(' 来自于 323875912 的评价 ');
+
+		$('.parts-cards .card:eq(9) .aaa-intro').text('平板2保护套');
+		$('.parts-cards .card:eq(9) .aaa-price').text('69元');
+		$('.parts-cards .card:eq(9) .aaa').attr('src','images/parts/T1QKJ_BvLv1RXrhCrK!220x220.jpg');
+
+		$('.parts-cards .card:eq(10) .bbb-price').text('保护套');
+	});
+
+	$('#parts-power').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.parts-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.parts-cards .card:eq(1) .label').addClass('hide');
+		$('.parts-cards .card:eq(1) .label').text('新品');
+		$('.parts-cards .card:eq(1) img').attr('src','images/parts/T1cVLjBX_v1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(1) .name').text('小米手机5 极薄防蓝光贴膜');
+		$('.parts-cards .card:eq(1) .price').html('49元');
+		$('.parts-cards .card:eq(1) .population').text('8166人评价');
+		$('.parts-cards .card:eq(1) .comment .comment-content').text('好用，顺滑！不错的膜！');
+		$('.parts-cards .card:eq(1) .comment .comment-author').text(' 来自于 笑弥勒001 的评价 ');
+
+		$('.parts-cards .card:eq(2) .label').addClass('hide');
+		$('.parts-cards .card:eq(2) .label').text('享9.3折');
+		$('.parts-cards .card:eq(2) img').attr('src','images/parts/T1y7JQBbCT1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(2) .name').text('小米Max 标准高透贴膜');
+		$('.parts-cards .card:eq(2) .price').html('19元');
+		$('.parts-cards .card:eq(2) .population').text('');
+		$('.parts-cards .card:eq(2) .comment .comment-content').text('贴膜系列真好里面有两张膜还有练习膜');
+		$('.parts-cards .card:eq(2) .comment .comment-author').text(' 来自于 陶震宇 的评价 ');
+
+		$('.parts-cards .card:eq(3) .label').addClass('hide');
+		$('.parts-cards .card:eq(3) .label').text('新品');
+		$('.parts-cards .card:eq(3) img').attr('src','images/parts/T1SSJ_B4E_1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(3) .name').text('小米平板2 标准高透贴膜');
+		$('.parts-cards .card:eq(3) .price').html('29元');
+		$('.parts-cards .card:eq(3) .population').text('1593人评价');
+		$('.parts-cards .card:eq(3) .comment .comment-content').text('透明度很好，还送练习贴');
+		$('.parts-cards .card:eq(3) .comment .comment-author').text(' 来自于 longtz 的评价 ');
+
+		$('.parts-cards .card:eq(4) .label').addClass('cheaper-price');
+		$('.parts-cards .card:eq(4) .label').text('享6折');
+		$('.parts-cards .card:eq(4) img').attr('src','images/parts/T1qdEgBKKv1RXrhCrK.jpg');
+		$('.parts-cards .card:eq(4) .name').text('红米Note3 钢化玻璃膜');
+		$('.parts-cards .card:eq(4) .price').html('9.9元 <s>19元</s>');
+		$('.parts-cards .card:eq(4) .population').text('');
+		$('.parts-cards .card:eq(4) .comment .comment-content').text('钢化膜表面很光滑，和手机屏幕玻璃一样，很好');
+		$('.parts-cards .card:eq(4) .comment .comment-author').text(' 来自于 Pioneer77 的评价 ');
+
+		$('.parts-cards .card:eq(6) .label').addClass('hide');
+		$('.parts-cards .card:eq(6) .label').text('新品');
+		$('.parts-cards .card:eq(6) img').attr('src','images/parts/pms_1482136232.14896578!220x220.jpg');
+		$('.parts-cards .card:eq(6) .name').text('红米4标准版 标准高透贴膜');
+		$('.parts-cards .card:eq(6) .price').html('19元');
+		$('.parts-cards .card:eq(6) .population').text('257人评价');
+		$('.parts-cards .card:eq(6) .comment .comment-content').text('品质真好，最主要学会自己动手也贴得非常好。');
+		$('.parts-cards .card:eq(6) .comment .comment-author').text(' 来自于 896153591 的评价 ');
+
+		$('.parts-cards .card:eq(7) .label').addClass('hide');
+		$('.parts-cards .card:eq(7) .label').text('享9折');
+		$('.parts-cards .card:eq(7) img').attr('src','images/parts/T1t2K_B4L_1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(7) .name').text('小米手机5 钢化玻璃贴膜');
+		$('.parts-cards .card:eq(7) .price').html('29元');
+		$('.parts-cards .card:eq(7) .population').text('');
+		$('.parts-cards .card:eq(7) .comment .comment-content').text('超薄，高透，手感好！很好！');
+		$('.parts-cards .card:eq(7) .comment .comment-author').text(' 来自于 梦中有你有我 的评价 ');
+
+		$('.parts-cards .card:eq(8) .label').addClass('cheaper-price');
+		$('.parts-cards .card:eq(8) .label').text('享6折');
+		$('.parts-cards .card:eq(8) img').attr('src','images/parts/pms_1469787992.44385373!220x220.jpg');
+		$('.parts-cards .card:eq(8) .name').text('红米Pro 标准高透贴膜');
+		$('.parts-cards .card:eq(8) .price').html('9.9元 <s>19元</s>');
+		$('.parts-cards .card:eq(8) .population').text('2384人评价');
+		$('.parts-cards .card:eq(8) .comment .comment-content').text('实用，便宜，物有所值');
+		$('.parts-cards .card:eq(8) .comment .comment-author').text(' 来自于 456573665 的评价 ');
+
+		$('.parts-cards .card:eq(9) .aaa-intro').text('小米手机5 标准高透贴膜');
+		$('.parts-cards .card:eq(9) .aaa-price').text('19元');
+		$('.parts-cards .card:eq(9) .aaa').attr('src','images/parts/T1keE_BsJv1RXrhCrK!220x220.jpg');
+
+		$('.parts-cards .card:eq(10) .bbb-price').text('贴膜');
+	});
+
+	$('#parts-battery').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.parts-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+			}
+		}
+
+		$('.parts-cards .card:eq(1) .label').addClass('new-product');
+		$('.parts-cards .card:eq(1) .label').text('新品');
+		$('.parts-cards .card:eq(1) img').attr('src','images/parts/pms_1477560322.75674062!220x220.jpg');
+		$('.parts-cards .card:eq(1) .name').text('小米USB快速充电数据线');
+		$('.parts-cards .card:eq(1) .price').html('19元');
+		$('.parts-cards .card:eq(1) .population').text('3142人评价');
+		$('.parts-cards .card:eq(1) .comment .comment-content').text('漂亮，美观，使用非常方便');
+		$('.parts-cards .card:eq(1) .comment .comment-author').text(' 来自于 350636267 的评价 ');
+
+		$('.parts-cards .card:eq(2) .label').addClass('new-product');
+		$('.parts-cards .card:eq(2) .label').text('新品');
+		$('.parts-cards .card:eq(2) img').attr('src','images/parts/pms_1482221011.26064844!220x220.jpg');
+		$('.parts-cards .card:eq(2) .name').text('小米指环支架 金色');
+		$('.parts-cards .card:eq(2) .price').html('19元');
+		$('.parts-cards .card:eq(2) .population').text('2437人评价');
+		$('.parts-cards .card:eq(2) .comment .comment-content').text('非常实用的指环，包装里还附带了几张备用黏胶贴纸，很贴...');
+		$('.parts-cards .card:eq(2) .comment .comment-author').text(' 来自于 298636516 的评价 ');
+
+		$('.parts-cards .card:eq(3) .label').addClass('hide');
+		$('.parts-cards .card:eq(3) .label').text('新品');
+		$('.parts-cards .card:eq(3) img').attr('src','images/parts/T1WTEvBmKT1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(3) .name').text('小米蓝牙手柄');
+		$('.parts-cards .card:eq(3) .price').html('99元');
+		$('.parts-cards .card:eq(3) .population').text('');
+		$('.parts-cards .card:eq(3) .comment .comment-content').text('居家旅行必备神器，完美配对盒子，手机，平板，电视。小...');
+		$('.parts-cards .card:eq(3) .comment .comment-author').text(' 来自于 赫赤赤有名 的评价 ');
+
+		$('.parts-cards .card:eq(4) .label').addClass('hide');
+		$('.parts-cards .card:eq(4) .label').text('新品');
+		$('.parts-cards .card:eq(4) img').attr('src','images/parts/T11oW_B4dv1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(4) .name').text('蓝牙语音体感遥控器');
+		$('.parts-cards .card:eq(4) .price').html('99元');
+		$('.parts-cards .card:eq(4) .population').text('2891人评价');
+		$('.parts-cards .card:eq(4) .comment .comment-content').text('语音识别很高，蓝牙遥控方便！');
+		$('.parts-cards .card:eq(4) .comment .comment-author').text(' 来自于 笛哥520 的评价 ');
+
+		$('.parts-cards .card:eq(6) .label').addClass('new-product');
+		$('.parts-cards .card:eq(6) .label').text('新品');
+		$('.parts-cards .card:eq(6) img').attr('src','images/parts/pms_1478248566.62624407!220x220.jpg');
+		$('.parts-cards .card:eq(6) .name').text('小米便携鼠标');
+		$('.parts-cards .card:eq(6) .price').html('99元');
+		$('.parts-cards .card:eq(6) .population').text('1228人评价');
+		$('.parts-cards .card:eq(6) .comment .comment-content').text('');
+		$('.parts-cards .card:eq(6) .comment .comment-author').text('');
+
+		$('.parts-cards .card:eq(7) .label').addClass('hide');
+		$('.parts-cards .card:eq(7) .label').text('享9折');
+		$('.parts-cards .card:eq(7) img').attr('src','images/parts/T13y_vBgJT1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(7) .name').text('小米千兆网线');
+		$('.parts-cards .card:eq(7) .price').html('14.9元');
+		$('.parts-cards .card:eq(7) .population').text('');
+		$('.parts-cards .card:eq(7) .comment .comment-content').text('超六类线，做工的确精良！喜欢，买了3，4根了。');
+		$('.parts-cards .card:eq(7) .comment .comment-author').text(' 来自于 Angel-lin 的评价 ');
+
+		$('.parts-cards .card:eq(8) .label').addClass('hide');
+		$('.parts-cards .card:eq(8) .label').text(' 新品 ');
+		$('.parts-cards .card:eq(8) img').attr('src','images/parts/T1xLxQBgVT1RXrhCrK!220x220.jpg');
+		$('.parts-cards .card:eq(8) .name').text('USB Type-C 转接头');
+		$('.parts-cards .card:eq(8) .price').html('5元');
+		$('.parts-cards .card:eq(8) .population').text('');
+		$('.parts-cards .card:eq(8) .comment .comment-content').text('简单设计，方便以前的数据线充电传输');
+		$('.parts-cards .card:eq(8) .comment .comment-author').text(' 来自于 Symon Lee 的评价 ');
+
+		$('.parts-cards .card:eq(9) .aaa-intro').text('青米USB快速充电数据线');
+		$('.parts-cards .card:eq(9) .aaa-price').text('19元');
+		$('.parts-cards .card:eq(9) .aaa').attr('src','images/parts/T1_7KgB4Jv1RXrhCrK!220x220.jpg');
+
+		$('.parts-cards .card:eq(10) .bbb-price').text('其他配件');
 	});
 }

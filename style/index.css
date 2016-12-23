@@ -1113,3 +1113,9 @@ li.title-item{
 	width: 100%;
 	/*height*/			/*total height added*/
 }
+
+.parts{
+	height: 1500px;			/*total height added to get this reset*/
+	margin:  0 auto;
+	margin-top: 40px;
+}
