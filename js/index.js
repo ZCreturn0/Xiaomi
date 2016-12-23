@@ -762,6 +762,7 @@ function listeningSwitchCard()
 				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.listening-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -844,6 +845,7 @@ function listeningSwitchCard()
 				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.listening-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -926,6 +928,7 @@ function listeningSwitchCard()
 				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.listening-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -1008,6 +1011,7 @@ function listeningSwitchCard()
 				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.listening-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -1093,6 +1097,7 @@ function partsSwitchCard()
 				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.parts-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -1175,6 +1180,7 @@ function partsSwitchCard()
 				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.parts-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -1257,6 +1263,7 @@ function partsSwitchCard()
 				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.parts-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
@@ -1339,6 +1346,7 @@ function partsSwitchCard()
 				$('.parts-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.parts-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.parts-cards .card:eq('+i+') img').attr('src','');
 			}
 		}
 
