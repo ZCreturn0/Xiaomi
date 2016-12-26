@@ -7,7 +7,10 @@ var currentPic = "pic1";
 var nextPic = "pic2";
 var hwnd;
 var initDir = "right";
+var initIntroduceDir = "right";
 var giftHwnd;
+var introduceHwnd;
+var currentCard = 1;
 
 function init()
 {
@@ -54,14 +57,34 @@ function cssSet()
 
 	$('.card').css('width','18.6%');
 	$('.card').css('height',$('.card').width() * 300/234);
+
 	$('.listening-cards').css('height',$('.card').height() * 2 + $('.separator-card').height());
+	$('.parts-cards').css('height',$('.card').height() * 2 + $('.separator-card').height());
+	$('.neighbouring-cards').css('height',$('.card').height() * 2 + $('.separator-card').height());
+
 	$('.listening').css('height',$('.title').height() + $('.listening-cards').height() + 10 +'px');
+	$('.parts').css('height',$('.title').height() + $('.parts-cards').height() + 10 +'px');
+	$('.neighbouring').css('height',$('.title').height() + $('.neighbouring-cards').height() + 10 +'px');
+
 	$('.last-in-line2').css('height',($('.card').height() - $('.separator-card').height()) / 2 - 1 + 'px');
 
 	$('.gift').css('width',$('.all-products').width());
-	$('.my-gift').css('width',1226/1366 * $('.my-gift').width());
+	$('.my-gift').css('width',1226/1281 * $('.my-gift').width());
+	$('.hot-products').css('width',$('.my-gift').width());
+	$('.dimension').css('width',$('.my-gift').width());
+
 	$('.listening').css('width',$('.my-gift').width());
 	$('.parts').css('width',$('.my-gift').width());
+	$('.neighbouring').css('width',$('.my-gift').width());
+
+	$('li.hot-list>img').css('height',220/296 * $('li.hot-list>img').width());
+	$('li.hot-list').css('height',$('li.hot-list>img').height() + $('.hot-conment').height() + 22 + 24 + 14 + 50 + 'px');
+	$('.hot-products').css('height',$('li.hot-list').height() + $('.gift-title-tips').height() + 30 + 'px');
+
+	$('.dimension-card[index=1]').css('left',$('.dimension-list').width() * 0);
+	$('.dimension-card[index=2]').css('left',$('.dimension-list').width() * 1);
+	$('.dimension-card[index=3]').css('left',$('.dimension-list').width() * 2);
+	$('.dimension-card').css('width',$('.dimension-list').width());
 
 	setPhoneListWidth();
 
@@ -99,6 +122,23 @@ function eventSet()
 		$('#gift-right').attr('src','images/myGift/右切换.png');
 	});
 
+	$('#introduce-right-slide').mouseover(function(){
+		$('#introduce-right-slide').attr('src','images/gift/右hover.png');
+	});
+	$('#introduce-right-slide').mouseout(function(){
+		$('#introduce-right-slide').attr('src','images/gift/右enabled.png');
+	});
+
+	$('li.dimension-list').mouseover(function(){
+		$(this).find('.dimension-left-slide').css('opacity','1');
+		$(this).find('.dimension-right-slide').css('opacity','1');
+	});
+	$('li.dimension-list').mouseout(function(){
+		$(this).find('.dimension-left-slide').css('opacity','0');
+		$(this).find('.dimension-right-slide').css('opacity','0');
+	});
+
+
 	
 
 	showProductList();
@@ -113,6 +153,12 @@ function eventSet()
 	$('#listening-hot').trigger('mouseover');
 	partsSwitchCard();
 	$('#parts-hot').trigger('mouseover');
+	neighbouringSwitchCard();
+	$('#neighbouring-hot').trigger('mouseover');
+	introduceRotate();
+	introduceAutoRotate();
+	judgeDimensionCursor();
+	dimensionRightSlide();
 }
 
 function productsShow()
@@ -762,7 +808,7 @@ function listeningSwitchCard()
 				$('.listening-cards .card:eq('+i+') .label').removeClass('cheaper-price');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('free-fee');
 				$('.listening-cards .card:eq('+i+') .label').removeClass('hide');
-				$('.listening-cards .card:eq('+i+') img').attr('src','');
+				$('.listening-cards .card:eq('+i+') img').attr('src','');		//清除原来的图片，防止因网速过慢而显示上张卡片的图片
 			}
 		}
 
@@ -1418,5 +1464,545 @@ function partsSwitchCard()
 		$('.parts-cards .card:eq(9) .aaa').attr('src','images/parts/T1_7KgB4Jv1RXrhCrK!220x220.jpg');
 
 		$('.parts-cards .card:eq(10) .bbb-price').text('其他配件');
+	});
+}
+
+function neighbouringSwitchCard()
+{
+	$('#neighbouring-hot').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.neighbouring-cards .card:eq('+i+') img').attr('src','');
+			}
+		}
+
+		$('.neighbouring-cards .card:eq(1) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(1) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(1) img').attr('src','images/neighbouring/eea5c9e7-ba21-4131-9945-89a296413b6e.jpg');
+		$('.neighbouring-cards .card:eq(1) .name').text('小米空气层连帽运动卫衣 男款');
+		$('.neighbouring-cards .card:eq(1) .price').html('149元 <s>199元</s>');
+		$('.neighbouring-cards .card:eq(1) .population').text('1274人评价');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-content').text('为接下来的秋天准备的衣服，质量做工非常好！！！');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-author').text(' 来自于 华_1986 的评价 ');
+
+		$('.neighbouring-cards .card:eq(2) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(2) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(2) img').attr('src','images/neighbouring/d0fef67b-8f3c-4b5a-af8d-0f588b946f6a.jpg');
+		$('.neighbouring-cards .card:eq(2) .name').text('经典连帽休闲卫衣');
+		$('.neighbouring-cards .card:eq(2) .price').html('109元 <s>149元</s>');
+		$('.neighbouring-cards .card:eq(2) .population').text('1562人评价');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-content').text('面料特别舒服，弹性好');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-author').text(' 来自于 陈小浩 的评价 ');
+
+		$('.neighbouring-cards .card:eq(3) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(3) .label').text('新品');
+		$('.neighbouring-cards .card:eq(3) img').attr('src','images/neighbouring/bc5ef4c1-69e8-48c3-8eda-eadddc6914c4.jpg');
+		$('.neighbouring-cards .card:eq(3) .name').text('小米摇粒绒加厚保暖外套');
+		$('.neighbouring-cards .card:eq(3) .price').html('99元');
+		$('.neighbouring-cards .card:eq(3) .population').text('5142人评价');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-content').text('质量非常好 支持小米。本人168cm，70kg买L码...');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-author').text(' 来自于 唯美是我 的评价 ');
+
+		$('.neighbouring-cards .card:eq(4) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(4) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(4) img').attr('src','images/neighbouring/8c0fc1e7-baa3-4198-a6de-313b12e8c85e.jpg');
+		$('.neighbouring-cards .card:eq(4) .name').text('小米羊毛围巾');
+		$('.neighbouring-cards .card:eq(4) .price').html('79元 <s>99元</s>');
+		$('.neighbouring-cards .card:eq(4) .population').text('1603人评价');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-content').text('包装很好，围巾也很不错～刚好天气降温了，围巾马上就能...');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-author').text(' 来自于 1157559069 的评价 ');
+
+		$('.neighbouring-cards .card:eq(6) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(6) .label').text('新品');
+		$('.neighbouring-cards .card:eq(6) img').attr('src','images/neighbouring/pms_1479972881.39395516!220x220.jpg');
+		$('.neighbouring-cards .card:eq(6) .name').text('最生活毛巾·青春系列');
+		$('.neighbouring-cards .card:eq(6) .price').html('19.9元');
+		$('.neighbouring-cards .card:eq(6) .population').text('401人评价');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-content').text('吸水能力太强了，大赞！！！');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-author').text(' 来自于 131697347 的评价 ');
+
+		$('.neighbouring-cards .card:eq(7) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(7) .label').text('新品');
+		$('.neighbouring-cards .card:eq(7) img').attr('src','images/neighbouring/pms_1480326067.72918680!220x220.jpg');
+		$('.neighbouring-cards .card:eq(7) .name').text('2017年米兔台历（探索版）');
+		$('.neighbouring-cards .card:eq(7) .price').html('12.9元');
+		$('.neighbouring-cards .card:eq(7) .population').text('317人评价');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-content').text('大小合适外观不错，正好是辞旧迎新的时候。');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-author').text(' 来自于 36679699 的评价 ');
+
+		$('.neighbouring-cards .card:eq(8) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(8) .label').text('新品');
+		$('.neighbouring-cards .card:eq(8) img').attr('src','images/neighbouring/pms_1481178479.88974286!220x220.jpg');
+		$('.neighbouring-cards .card:eq(8) .name').text('8H多功能护颈枕U1');
+		$('.neighbouring-cards .card:eq(8) .price').html('79元');
+		$('.neighbouring-cards .card:eq(8) .population').text('137人评价');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-content').text('很柔软，用起来很舒适，里边的填充物雪花状的，颜色均匀...');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-author').text(' 来自于 葛小禅 的评价 ');
+
+		$('.neighbouring-cards .card:eq(9) .aaa-intro').text('米兔福到贴');
+		$('.neighbouring-cards .card:eq(9) .aaa-price').text('5.9元');
+		$('.neighbouring-cards .card:eq(9) .aaa').attr('src','images/neighbouring/pms_1480325279.99027475!220x220.jpg');
+
+		$('.neighbouring-cards .card:eq(10) .bbb-price').text('热门');
+	});
+
+	$('#neighbouring-earphone').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.neighbouring-cards .card:eq('+i+') img').attr('src','');
+			}
+		}
+
+		$('.neighbouring-cards .card:eq(1) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(1) .label').text('新品');
+		$('.neighbouring-cards .card:eq(1) img').attr('src','images/neighbouring/bc5ef4c1-69e8-48c3-8eda-eadddc6914c4 (1).jpg');
+		$('.neighbouring-cards .card:eq(1) .name').text('小米摇粒绒加厚保暖外套');
+		$('.neighbouring-cards .card:eq(1) .price').html('99元');
+		$('.neighbouring-cards .card:eq(1) .population').text('5142人评价');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-content').text('质量非常好 支持小米。本人168cm，70kg买L码...');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-author').text(' 来自于 唯美是我 的评价 ');
+
+		$('.neighbouring-cards .card:eq(2) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(2) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(2) img').attr('src','images/neighbouring/eea5c9e7-ba21-4131-9945-89a296413b6e.jpg');
+		$('.neighbouring-cards .card:eq(2) .name').text('小米空气层连帽运动卫衣 男款');
+		$('.neighbouring-cards .card:eq(2) .price').html('149元 <s>199元</s>');
+		$('.neighbouring-cards .card:eq(2) .population').text('1274人评价');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-content').text('为接下来的秋天准备的衣服，质量做工非常好！！！');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-author').text(' 来自于 华_1986 的评价 ');
+
+		$('.neighbouring-cards .card:eq(3) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(3) .label').text('新品');
+		$('.neighbouring-cards .card:eq(3) img').attr('src','images/neighbouring/329a5d3f-ad6f-47fc-981e-85e0bd634055.jpg');
+		$('.neighbouring-cards .card:eq(3) .name').text('小米摇粒绒加厚保暖外套 女款');
+		$('.neighbouring-cards .card:eq(3) .price').html('99元');
+		$('.neighbouring-cards .card:eq(3) .population').text('629人评价');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-content').text('真心不错！老婆很喜欢');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-author').text(' 来自于 963474089 的评价 ');
+
+		$('.neighbouring-cards .card:eq(4) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(4) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(4) img').attr('src','images/neighbouring/2e1475fd-6afc-4f3c-bca3-ce50c342642c.jpg');
+		$('.neighbouring-cards .card:eq(4) .name').text('小米空气层连帽运动卫衣 女款');
+		$('.neighbouring-cards .card:eq(4) .price').html('149元 <s>199元</s>');
+		$('.neighbouring-cards .card:eq(4) .population').text('125人评价');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-content').text('质量好，款式也好看，做工精细，帽绳反光设计。物超所值。');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-author').text(' 来自于 banma1221 的评价 ');
+
+		$('.neighbouring-cards .card:eq(6) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(6) .label').text('享7折');
+		$('.neighbouring-cards .card:eq(6) img').attr('src','images/neighbouring/pms_1478762755.55733411!220x220.jpg');
+		$('.neighbouring-cards .card:eq(6) .name').text('小米纪念款围巾（去探索）');
+		$('.neighbouring-cards .card:eq(6) .price').html('89元 <s>129元</s>');
+		$('.neighbouring-cards .card:eq(6) .population').text('47人评价');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-content').text('');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-author').text('');
+
+		$('.neighbouring-cards .card:eq(7) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(7) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(7) img').attr('src','images/neighbouring/357bebdd-6e77-4c43-a33c-b8287caace2e.jpg');
+		$('.neighbouring-cards .card:eq(7) .name').text('小米短袖T恤 水管工米兔');
+		$('.neighbouring-cards .card:eq(7) .price').html('39元');
+		$('.neighbouring-cards .card:eq(7) .population').text('4095人评价');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-content').text('感觉非常不错，特别是这上边的图案，萌萌哒！');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-author').text(' 来自于 478670150 的评价 ');
+
+		$('.neighbouring-cards .card:eq(8) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(8) .label').text(' 新品 ');
+		$('.neighbouring-cards .card:eq(8) img').attr('src','images/neighbouring/23c8122a-3bf4-4675-abb2-aca349aa1923.jpg');
+		$('.neighbouring-cards .card:eq(8) .name').text('小米V领短袖T恤 女款');
+		$('.neighbouring-cards .card:eq(8) .price').html('39元');
+		$('.neighbouring-cards .card:eq(8) .population').text('3780人评价');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-content').text('质量非常好，滑滑的穿着舒适，推荐给大家值得购买。');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-author').text(' 来自于 697282835 的评价 ');
+
+		$('.neighbouring-cards .card:eq(9) .aaa-intro').text('小米短袖T恤 情侣米兔 女款');
+		$('.neighbouring-cards .card:eq(9) .aaa-price').text('39元');
+		$('.neighbouring-cards .card:eq(9) .aaa').attr('src','images/neighbouring/T1i.YjBbWT1RXrhCrK.jpg');
+
+		$('.neighbouring-cards .card:eq(10) .bbb-price').text('服装');
+	});
+
+	$('#neighbouring-power').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.neighbouring-cards .card:eq('+i+') img').attr('src','');
+			}
+		}
+
+		$('.neighbouring-cards .card:eq(1) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(1) .label').text('享7折');
+		$('.neighbouring-cards .card:eq(1) img').attr('src','images/neighbouring/pms_1464943812.60215816!220x220.jpg');
+		$('.neighbouring-cards .card:eq(1) .name').text('超脑米兔钥匙扣');
+		$('.neighbouring-cards .card:eq(1) .price').html('19元 <s>29元</s>');
+		$('.neighbouring-cards .card:eq(1) .population').text('573人评价');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-content').text('这种像解刨模型的透明设计很有创意！如果能把个头再做大...');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-author').text(' 来自于 卍米粒卐 的评价 ');
+
+		$('.neighbouring-cards .card:eq(2) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(2) .label').text('享9.2折');
+		$('.neighbouring-cards .card:eq(2) img').attr('src','images/neighbouring/pms_1464947945.39918897!220x220.jpg');
+		$('.neighbouring-cards .card:eq(2) .name').text('拳击手米兔');
+		$('.neighbouring-cards .card:eq(2) .price').html('45元 <s>49元</s>');
+		$('.neighbouring-cards .card:eq(2) .population').text('168人评价');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-content').text('非常好，大力支持，送朋友');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-author').text(' 来自于 Danny.Wu 的评价 ');
+
+		$('.neighbouring-cards .card:eq(3) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(3) .label').text('享9.2折');
+		$('.neighbouring-cards .card:eq(3) img').attr('src','images/neighbouring/pms_1463975728.16077005!220x220.jpg');
+		$('.neighbouring-cards .card:eq(3) .name').text('悟空米兔');
+		$('.neighbouring-cards .card:eq(3) .price').html('45元 <s>49元</s>');
+		$('.neighbouring-cards .card:eq(3) .population').text('315人评价');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-content').text('不错，我非常喜欢，斩妖除魔。猴年大吉。');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-author').text(' 来自于 丛晓宇 的评价 ');
+
+		$('.neighbouring-cards .card:eq(4) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(4) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(4) img').attr('src','images/neighbouring/pms_1463973922.4853847!220x220.jpg');
+		$('.neighbouring-cards .card:eq(4) .name').text('飞行员米兔屏幕擦挂饰');
+		$('.neighbouring-cards .card:eq(4) .price').html('25元 <s>29元</s>');
+		$('.neighbouring-cards .card:eq(4) .population').text('390人评价');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-content').text('这次的屏幕擦很大，擦大屏手机合适！');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-author').text(' 来自于 大宁 的评价 ');
+
+		$('.neighbouring-cards .card:eq(6) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(6) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(6) img').attr('src','images/neighbouring/T1dRZTB_xT1RXrhCrK!220x220.jpg');
+		$('.neighbouring-cards .card:eq(6) .name').text('经典版米兔');
+		$('.neighbouring-cards .card:eq(6) .price').html('25元 <s>29元</s>');
+		$('.neighbouring-cards .card:eq(6) .population').text('');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-content').text('媳妇儿很喜欢，兔子做工很好？手感也不错，但是脱了脑子...');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-author').text(' 来自于 15288871870 的评价 ');
+
+		$('.neighbouring-cards .card:eq(7) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(7) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(7) img').attr('src','images/neighbouring/T1zVZjBmJv1RXrhCrK.jpg');
+		$('.neighbouring-cards .card:eq(7) .name').text('文艺版米兔');
+		$('.neighbouring-cards .card:eq(7) .price').html('39元 <s>49元</s>');
+		$('.neighbouring-cards .card:eq(7) .population').text('435人评价');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-content').text('很有文艺派，还穿着马甲，哈哈，小样，有本事把马甲脱了...');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-author').text(' 来自于 辛京北 的评价 ');
+
+		$('.neighbouring-cards .card:eq(8) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(8) .label').text('享8折');
+		$('.neighbouring-cards .card:eq(8) img').attr('src','images/neighbouring/pms_1466499316.73488636!220x220.jpg');
+		$('.neighbouring-cards .card:eq(8) .name').text('13cm皮质米兔挂饰');
+		$('.neighbouring-cards .card:eq(8) .price').html('39元 <s>49元</s>');
+		$('.neighbouring-cards .card:eq(8) .population').text('139人评价');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-content').text('嘻嘻非常非常喜欢萌萌哒超可爱快递很给力当天抵达');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-author').text(' 来自于 罗帅帅 的评价 ');
+
+		$('.neighbouring-cards .card:eq(9) .aaa-intro').text('黑猫米兔');
+		$('.neighbouring-cards .card:eq(9) .aaa-price').text('39元');
+		$('.neighbouring-cards .card:eq(9) .aaa').attr('src','images/neighbouring/T1MBhvBm_T1RXrhCrK!220x220.jpg');
+
+		$('.neighbouring-cards .card:eq(10) .bbb-price').text('米兔');
+	});
+
+	$('#neighbouring-battery').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.neighbouring-cards .card:eq('+i+') img').attr('src','');
+			}
+		}
+
+		$('.neighbouring-cards .card:eq(1) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(1) .label').text('新品');
+		$('.neighbouring-cards .card:eq(1) img').attr('src','images/neighbouring/pms_1480477598.47892154!220x220.jpg');
+		$('.neighbouring-cards .card:eq(1) .name').text('米家中性笔专用笔芯');
+		$('.neighbouring-cards .card:eq(1) .price').html('6.9元');
+		$('.neighbouring-cards .card:eq(1) .population').text('340人评价');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-content').text('三支笔芯够用两三个月了，嘿嘿，不错，依旧高颜值高质量！');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-author').text(' 来自于 71561047 的评价 ');
+
+		$('.neighbouring-cards .card:eq(2) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(2) .label').text('新品');
+		$('.neighbouring-cards .card:eq(2) img').attr('src','images/neighbouring/pms_1469410489.30412121!220x220.jpg');
+		$('.neighbouring-cards .card:eq(2) .name').text('米家签字笔');
+		$('.neighbouring-cards .card:eq(2) .price').html('14.9元');
+		$('.neighbouring-cards .card:eq(2) .population').text('');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-content').text('笔的质感很好，拿着很舒服，重量合适，感觉用上这个笔字...');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-author').text(' 来自于 366904540 的评价 ');
+
+		$('.neighbouring-cards .card:eq(3) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(3) .label').text('新品');
+		$('.neighbouring-cards .card:eq(3) img').attr('src','images/neighbouring/5a28d943-ef5d-4920-a89a-7f1bce6c5b35.jpg');
+		$('.neighbouring-cards .card:eq(3) .name').text('米家LED随身灯 增强版');
+		$('.neighbouring-cards .card:eq(3) .price').html('19.9元');
+		$('.neighbouring-cards .card:eq(3) .population').text('');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-content').text('很好用！特别是五挡开关灯，好用！方便！');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-author').text(' 来自于 86505510 的评价 ');
+
+		$('.neighbouring-cards .card:eq(4) .label').addClass('new-product');
+		$('.neighbouring-cards .card:eq(4) .label').text('新品');
+		$('.neighbouring-cards .card:eq(4) img').attr('src','images/neighbouring/pms_1481178479.88974286!220x220 (1).jpg');
+		$('.neighbouring-cards .card:eq(4) .name').text('8H多功能护颈枕U1');
+		$('.neighbouring-cards .card:eq(4) .price').html('79元');
+		$('.neighbouring-cards .card:eq(4) .population').text('137人评价');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-content').text('很柔软，用起来很舒适，里边的填充物雪花状的，颜色均匀...');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-author').text(' 来自于 葛小禅 的评价 ');
+
+		$('.neighbouring-cards .card:eq(6) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(6) .label').text('享9.5折');
+		$('.neighbouring-cards .card:eq(6) img').attr('src','images/neighbouring/pms_1463971828.3961404!220x220.jpg');
+		$('.neighbouring-cards .card:eq(6) .name').text('变形金刚特别版声波');
+		$('.neighbouring-cards .card:eq(6) .price').html('159元 <s>169元</s>');
+		$('.neighbouring-cards .card:eq(6) .population').text('2206人评价');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-content').text('满满的全是回忆…第一次看着说明书拼装，瞬间感觉回到小...');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-author').text(' 来自于 凯_豆爸 的评价 ');
+
+		$('.neighbouring-cards .card:eq(7) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(7) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(7) img').attr('src','images/neighbouring/T1kFK_BsKv1RXrhCrK.jpg');
+		$('.neighbouring-cards .card:eq(7) .name').text('手机自拍补光灯');
+		$('.neighbouring-cards .card:eq(7) .price').html('49元');
+		$('.neighbouring-cards .card:eq(7) .population').text('2493人评价');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-content').text('好玩好用好有趣，好玩好用好有趣');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-author').text(' 来自于 阿圆在北京 的评价 ');
+
+		$('.neighbouring-cards .card:eq(8) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(8) .label').text(' 新品 ');
+		$('.neighbouring-cards .card:eq(8) img').attr('src','images/neighbouring/T1eKdgB4xv1RXrhCrK!220x220.jpg');
+		$('.neighbouring-cards .card:eq(8) .name').text('小米电源线收纳盒');
+		$('.neighbouring-cards .card:eq(8) .price').html('49元');
+		$('.neighbouring-cards .card:eq(8) .population').text('2679人评价');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-content').text('简洁大方，支持小米。');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-author').text(' 来自于 古国龙 的评价 ');
+
+		$('.neighbouring-cards .card:eq(9) .aaa-intro').text('鼠标垫加大号');
+		$('.neighbouring-cards .card:eq(9) .aaa-price').text('19元');
+		$('.neighbouring-cards .card:eq(9) .aaa').attr('src','images/neighbouring/T1fODjBsbT1RXrhCrK!220x220.jpg');
+
+		$('.neighbouring-cards .card:eq(10) .bbb-price').text('生活周边');
+	});
+
+	$('#neighbouring-bag').mouseover(function(){
+		for(var i=1;i<9;i++)
+		{
+			if(i != 5)
+			{
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('new-product');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('cheaper-price');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('free-fee');
+				$('.neighbouring-cards .card:eq('+i+') .label').removeClass('hide');
+				$('.neighbouring-cards .card:eq('+i+') img').attr('src','');
+			}
+		}
+
+		$('.neighbouring-cards .card:eq(1) .label').addClass('free-fee');
+		$('.neighbouring-cards .card:eq(1) .label').text('免邮费');
+		$('.neighbouring-cards .card:eq(1) img').attr('src','images/neighbouring/T1RRCjBKJv1RXrhCrK.jpg');
+		$('.neighbouring-cards .card:eq(1) .name').text('90分旅行箱 20寸');
+		$('.neighbouring-cards .card:eq(1) .price').html('299元');
+		$('.neighbouring-cards .card:eq(1) .population').text('');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-content').text('这箱子很好，外观漂亮，实用性强。很轻，有点软但不影响...');
+		$('.neighbouring-cards .card:eq(1) .comment .comment-author').text(' 来自于 子书雁 的评价 ');
+
+		$('.neighbouring-cards .card:eq(2) .label').addClass('free-fee');
+		$('.neighbouring-cards .card:eq(2) .label').text('免邮费');
+		$('.neighbouring-cards .card:eq(2) img').attr('src','images/neighbouring/T1TvJ_B_Kv1RXrhCrK.jpg');
+		$('.neighbouring-cards .card:eq(2) .name').text('90分旅行箱 24寸');
+		$('.neighbouring-cards .card:eq(2) .price').html('349元');
+		$('.neighbouring-cards .card:eq(2) .population').text('');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-content').text('设计简约好看，轮子静音顺滑。前几天去香港刚好用上了');
+		$('.neighbouring-cards .card:eq(2) .comment .comment-author').text(' 来自于 黄黄志刚 的评价 ');
+
+		$('.neighbouring-cards .card:eq(3) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(3) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(3) img').attr('src','images/neighbouring/pms_1466665347.53966019!220x220.jpg');
+		$('.neighbouring-cards .card:eq(3) .name').text('小米轻动系百搭多用背包');
+		$('.neighbouring-cards .card:eq(3) .price').html('35元 <s>39元</s>');
+		$('.neighbouring-cards .card:eq(3) .population').text('5396人评价');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-content').text('背包容量比想象中大多了，材质看着就高大上，摸起挺舒服...');
+		$('.neighbouring-cards .card:eq(3) .comment .comment-author').text(' 来自于 卍米粒卐 的评价 ');
+
+		$('.neighbouring-cards .card:eq(4) .label').addClass('hide');
+		$('.neighbouring-cards .card:eq(4) .label').text('新品');
+		$('.neighbouring-cards .card:eq(4) img').attr('src','images/neighbouring/T1G9Y_BmCv1RXrhCrK.jpg');
+		$('.neighbouring-cards .card:eq(4) .name').text('90分便携收纳袋');
+		$('.neighbouring-cards .card:eq(4) .price').html('29元');
+		$('.neighbouring-cards .card:eq(4) .population').text('3004人评价');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-content').text('太实用了，就是要是大一点就好了，便捷性一流，要是能有...');
+		$('.neighbouring-cards .card:eq(4) .comment .comment-author').text(' 来自于 Licinmin 的评价 ');
+
+		$('.neighbouring-cards .card:eq(6) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(6) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(6) img').attr('src','images/neighbouring/6ddc1df6-ce8e-4cb5-a26a-b5ef80f1adf7.jpg');
+		$('.neighbouring-cards .card:eq(6) .name').text('小米经典商务双肩包');
+		$('.neighbouring-cards .card:eq(6) .price').html('89元 <s>99元</s>');
+		$('.neighbouring-cards .card:eq(6) .population').text('');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-content').text('非常不错，感觉厚实，但是重量很好，不轻不重。很多贴心...');
+		$('.neighbouring-cards .card:eq(6) .comment .comment-author').text(' 来自于 李博强 的评价 ');
+
+		$('.neighbouring-cards .card:eq(7) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(7) .label').text('享9折');
+		$('.neighbouring-cards .card:eq(7) img').attr('src','images/neighbouring/T1a3DvB7hv1RXrhCrK!220x220.jpg');
+		$('.neighbouring-cards .card:eq(7) .name').text('小米极简都市双肩包');
+		$('.neighbouring-cards .card:eq(7) .price').html('129元 <s>149元</s>');
+		$('.neighbouring-cards .card:eq(7) .population').text('');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-content').text('好东西，刚买到同事就买了一个，太帅了；以后就买小米的...');
+		$('.neighbouring-cards .card:eq(7) .comment .comment-author').text(' 来自于 972458328 的评价 ');
+
+		$('.neighbouring-cards .card:eq(8) .label').addClass('cheaper-price');
+		$('.neighbouring-cards .card:eq(8) .label').text(' 享9折 ');
+		$('.neighbouring-cards .card:eq(8) img').attr('src','images/neighbouring/T1FtKgBvZv1RXrhCrK!220x220.jpg');
+		$('.neighbouring-cards .card:eq(8) .name').text('小米多功能都市休闲胸包');
+		$('.neighbouring-cards .card:eq(8) .price').html('59元 <s>69元</s>');
+		$('.neighbouring-cards .card:eq(8) .population').text('');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-content').text('做工很好，与小米产品(平板、手机、移动电源)也是完美...');
+		$('.neighbouring-cards .card:eq(8) .comment .comment-author').text(' 来自于 陈皮～小米 的评价 ');
+
+		$('.neighbouring-cards .card:eq(9) .aaa-intro').text('学院风简约双肩包');
+		$('.neighbouring-cards .card:eq(9) .aaa-price').text('55元');
+		$('.neighbouring-cards .card:eq(9) .aaa').attr('src','images/neighbouring/T1tzL_BjYT1RXrhCrK!220x220.jpg');
+
+		$('.neighbouring-cards .card:eq(10) .bbb-price').text('箱包');
+	});
+}
+
+function introduceRotate()
+{
+	$('#introduce-right-slide').on('click',function(){
+		if(initIntroduceDir == "right")
+		{
+			clearInterval(introduceHwnd);			//这两句用来点击后重启计时器
+			introduceAutoRotate();
+			$('#introduce-right-slide').attr('src','images/gift/右disabled.png');
+			$('#introduce-right-slide').css('cursor','default');
+			$('#introduce-right-slide').mouseover(function(){
+				$('#introduce-right-slide').attr('src','images/gift/右disabled.png');
+			});
+			$('#introduce-right-slide').mouseout(function(){
+				$('#introduce-right-slide').attr('src','images/gift/右disabled.png');
+			});
+
+			$('#introduce-left-slide').attr('src','images/gift/左enabled.png');
+			$('#introduce-left-slide').css('cursor','pointer');
+			$('#introduce-left-slide').mouseover(function(){
+				$('#introduce-left-slide').attr('src','images/gift/左hover.png');
+			});
+			$('#introduce-left-slide').mouseout(function(){
+				$('#introduce-left-slide').attr('src','images/gift/左enabled.png');
+			});
+			$('.introduce-list').animate({'margin-left':$('.gift-content').width() * (-1)},500,'easeOutSine');
+			initIntroduceDir = "left";
+		}
+	});
+
+	$('#introduce-left-slide').on('click',function(){
+		if(initIntroduceDir == "left")
+		{
+			clearInterval(introduceHwnd);
+			introduceAutoRotate();
+			$('#introduce-left-slide').attr('src','images/gift/左disabled.png');
+			$('#introduce-left-slide').css('cursor','default');
+			$('#introduce-left-slide').mouseover(function(){
+				$('#introduce-left-slide').attr('src','images/gift/左disabled.png');
+			});
+			$('#introduce-left-slide').mouseout(function(){
+				$('#introduce-left-slide').attr('src','images/gift/左disabled.png');
+			});
+
+			$('#introduce-right-slide').attr('src','images/gift/右enabled.png');
+			$('#introduce-right-slide').css('cursor','pointer');
+			$('#introduce-right-slide').mouseover(function(){
+				$('#introduce-right-slide').attr('src','images/gift/右hover.png');
+			});
+			$('#introduce-right-slide').mouseout(function(){
+				$('#introduce-right-slide').attr('src','images/gift/右enabled.png');
+			});
+			$('.introduce-list').animate({'margin-left':'0'},500,'easeOutSine');
+			initIntroduceDir = "right";
+		}
+	});
+}
+
+function introduceAutoRotate()
+{
+	introduceHwnd = setInterval(function(){
+		if(initIntroduceDir == "right")
+		{
+			$('#introduce-right-slide').trigger('click');
+		}
+		else
+		{
+			$('#introduce-left-slide').trigger('click');
+		}
+	},10000);
+}
+
+function judgeDimensionCursor()
+{
+	if(currentCard == 3)
+	{
+		$('.dimension-right-slide').css('cursor','default');
+	}
+	else
+	{
+		$('.dimension-right-slide').css('cursor','pointer');
+	}
+	if(currentCard == 1)
+	{
+		$('.dimension-left-slide').css('cursor','default');
+	}
+	else
+	{
+		$('.dimension-left-slide').css('cursor','pointer');
+	}
+}
+
+function dimensionRightSlide()
+{
+	$('.dimension-right-slide').click(function(){
+		if(currentCard != 3)
+		{
+			$(this).parent('.dimension-list').find('.dimension-cards').animate({'left':$('.dimension-cards').position().left - $('.dimension-list').width()});
+			$('.switch-point[index='+currentCard+']').removeClass('current-point');
+			currentCard ++;
+			$('.switch-point[index='+currentCard+']').addClass('current-point');
+			judgeDimensionCursor();
+		}
+	});
+	$('.dimension-left-slide').click(function(){
+		if(currentCard != 1)
+		{
+			$(this).parent('.dimension-list').find('.dimension-cards').animate({'left':$('.dimension-cards').position().left + $('.dimension-list').width()});
+			$('.switch-point[index='+currentCard+']').removeClass('current-point');
+			currentCard --;
+			$('.switch-point[index='+currentCard+']').addClass('current-point');
+			judgeDimensionCursor();
+		}
+	});
+	$('.switch-point').click(function(){
+		$(this).parents('.dimension-list').find('.dimension-cards').animate({'left':(parseInt($(this).attr('index'))-1) * $('.dimension-list').width() * (-1)});
+		$('.switch-point[index='+currentCard+']').removeClass('current-point');
+		currentCard = parseInt($(this).attr('index'));
+		$('.switch-point[index='+currentCard+']').addClass('current-point');
+		judgeDimensionCursor();
 	});
 }

@@ -10,6 +10,10 @@ body,.wrapper{
 	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 }
 
+ul{
+	list-style-type: none;
+}
+
 .cb{
 	clear: both;
 }
@@ -873,12 +877,6 @@ s{
 	background-color: #83c44e;
 }
 
-.listening{
-	height: 1500px;			/*total height added to get this*/
-	margin:  0 auto;
-	margin-top: 40px;
-}
-
 /*******************  public css start  ********************/
 
 .title{
@@ -1114,8 +1112,356 @@ li.title-item{
 	/*height*/			/*total height added*/
 }
 
+.listening{
+	height: 1500px;			/*total height added to get this*/
+	margin:  0 auto;
+	margin-top: 40px;
+}
+
 .parts{
 	height: 1500px;			/*total height added to get this reset*/
 	margin:  0 auto;
 	margin-top: 40px;
+}
+
+.neighbouring{
+	height: 1500px;			/*total height added to get this reset*/
+	margin:  0 auto;
+	margin-top: 40px;
+}
+
+#introduce-right-slide:hover{
+	cursor: pointer;
+}
+
+.introduce-list .gift-card{
+	background: white;
+	border: none;
+}
+
+.introduce-list .gift-card:hover{
+	transform: translate3d(0, -2px, 0);
+	transition: all 0.2s linear;
+}
+
+.hot-products{
+	height: 1340px;				/*in js reset*/
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+ul.hot-lists{
+	list-style-type: none;
+}
+
+li.hot-list{
+	display: block;
+	width: 24.19%;
+	/*height in js reset*/
+	margin: 0 0.5%;
+	background: white;
+	padding-bottom: 30px;
+	transition: all .2s linear;
+}
+
+li.hot-list:hover{
+	box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+	transform: translate3d(0, -2px, 0);
+}
+
+.first-hot{
+	margin-left: 0 !important;
+}
+
+.last-hot{
+	margin-right: 0 !important;
+}
+
+li.hot-list>img{				/*height added*/
+	width: 100%;
+	cursor: pointer;
+	font-size: 0;
+}
+
+.hot-conment{
+	display: block;
+	color: #333;
+	cursor: pointer;
+	font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    height: 72px;				/*height added*/
+    margin: 0 28px 22px;		/*height added*/
+    overflow: hidden;
+    padding-top: 28px;
+}
+
+.hot-author{
+	position: relative;
+	display: block;
+    -webkit-margin-before: 1em;	/*height added*/
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    height: 18px;				/*height added*/
+    margin: 0 28px 8px;
+    padding: 0 10px 0 0;
+    font-size: 12px;
+    color: #b0b0b0;
+}
+
+.hot-info{
+	margin: 0 30px;				/*height added*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hot-info>h3{
+	color: #333;
+	cursor: pointer;
+	font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.sep{
+	color: #e0e0e0;
+	font-family: sans-serif;
+    margin: 0px 0.25em;
+}
+
+.hot-price{
+	display: inline;
+    margin: 0;
+    color: #ff6700;
+}
+
+.dimension{
+	height: 1340px;				/*in js reset*/
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+	overflow: hidden;
+	padding-top: 20px;
+}
+
+ul.dimension-lists{
+	list-style-type: none;
+}
+
+li.dimension-list{
+	display: block;
+	position: relative;
+	width: 24.19%;
+	height: 400px;
+	/*height in js reset*/
+	margin: 0 0.5%;
+	background: white;
+	padding-bottom: 30px;
+	transition: all .2s linear;
+	padding: 45px 0 0;
+	margin-bottom: 14px;
+    background: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+
+.first-dimension{
+	margin-left: 0 !important;
+}
+
+.last-dimension{
+	margin-right: 0 !important;
+}
+
+li.dimension-list:hover{
+	box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+	transform: translate3d(0, -2px, 0);
+}
+
+#dimension1{
+	border-top: 1px solid #ffac13;
+}
+
+#dimension2{
+	border-top: 1px solid #83c44e;
+}
+
+#dimension3{
+	border-top: 1px solid #e53935;
+}
+
+#dimension4{
+	border-top: 1px solid #2196f3;
+}
+
+p.dimension-title{
+	margin: 0 10px 18px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #ffac13;
+}
+
+p.dimension-name{
+	display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #333;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+}
+
+p.desc{
+	color: #b0b0b0;
+	margin: 0 48px 10px;
+    height: 40px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    margin-top: 0.5em;
+}
+
+p.dimension-price{
+	color: #333;
+	height: 21px;
+    margin: 0 10px 15px;
+    text-align: center;
+    margin: 1em 0;
+    cursor: pointer;
+}
+
+.dimension-pic{
+	width: 216px;
+    height: 154px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dimension-left-slide{
+	position: absolute;
+	left: 0;
+	top: 45%;
+	margin-top: -40px;
+	transition: all .6s;
+	width: 20px;
+	height: 48px;
+	line-height: 50px;
+	background-color: #ccc;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+.dimension-left-slide:hover{
+	background: #757575;
+}
+
+.dimension-right-slide{
+	position: absolute;
+	right: 0;
+	top: 45%;
+	margin-top: -40px;
+	transition: all .6s;
+	width: 20px;
+	height: 48px;
+	line-height: 50px;
+	background-color: #ccc;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+.dimension-right-slide:hover{
+	background: #757575;
+}
+
+.dimension-left-slide>img{
+	width: 18px;
+	height: 15px;
+}
+
+.dimension-right-slide>img{
+	width: 18px;
+	height: 15px;
+}
+
+ul.dimension-cards{
+	position: relative;
+}
+
+li.dimension-card{
+	position: absolute;
+	z-index: 100;
+}
+
+ul.dimension-switch{
+	position: absolute;
+	bottom: 50px;
+	margin: 0 auto;
+	left: 50%;
+}
+
+li.switch-point{
+	display: block;
+	width: 0;
+	height: 0;
+	border: 3px solid #b0b0b0;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+li.switch-point:hover{
+	border-color: #ff6700 !important;
+}
+
+.current-point{
+	width: 5px !important;
+	height: 5px !important;
+	background: white !important;
+	border-color: #ff6700 !important;
+	margin-top: -2px !important;
+	cursor: default !important;
+}
+
+.point1{
+	margin-left: -30px;
+}
+
+.point2{
+	margin-left: -3px;
+}
+
+.point3{
+	margin-left: 21px;
+}
+
+.dimension-more{
+	border:1px solid #ffac13;
+    background: #fff;
+    color: #ffac13;
+    width: 118px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 28px;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.dimension-more:hover{
+	color: #fff;
+    background-color: #ff920f;
+    border-color: #ff920f;
 }
