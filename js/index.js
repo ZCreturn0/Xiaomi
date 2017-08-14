@@ -534,11 +534,11 @@ function itemChanged()
 			clearInterval(hwnd);
 			switch(clickItemIndex)
 			{
-				case "1":$('#bg-'+nextPic).css('background','url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)');break;
-				case "2":$('#bg-'+nextPic).css('background','url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)');break;
-				case "3":$('#bg-'+nextPic).css('background','url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)');break;
-				case "4":$('#bg-'+nextPic).css('background','url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)');break;
-				case "5":$('#bg-'+nextPic).css('background','url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)');break;
+				case "1":$('#bg-'+nextPic).css({'background':'url(images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg)','background-repeat':'no-repeat','background-size':'100% 100%'});break;
+				case "2":$('#bg-'+nextPic).css({'background':'url(images/5cfe796d-6344-470d-9398-bcdfb120004d.jpg)','background-repeat':'no-repeat','background-size':'100% 100%'});break;
+				case "3":$('#bg-'+nextPic).css({'background':'url(images/63fd6d20-e92c-4591-92f8-0d212b127063.jpg)','background-repeat':'no-repeat','background-size':'100% 100%'});break;
+				case "4":$('#bg-'+nextPic).css({'background':'url(images/ed1e1a84-3136-429c-91ee-d8000f599bbd.jpg)','background-repeat':'no-repeat','background-size':'100% 100%'});break;
+				case "5":$('#bg-'+nextPic).css({'background':'url(images/fe177026-bc42-4526-83a2-36269a29354a.jpg)','background-repeat':'no-repeat','background-size':'100% 100%'});break;
 				default:;
 			}
 			$(".ui-page-item[index="+currentItemIndex+"]").removeClass('current-item');
