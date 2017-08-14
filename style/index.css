@@ -344,6 +344,8 @@ ul.products-entrance .separator1{
 #bg-pic1{
 	background: url('../images/caa9fd50-9bd1-441f-a6ad-6fb0f8e05599.jpg');
 	z-index: 20;
+	background-repeat:no-repeat; 
+	background-size:100% 100%;
 }
 
 #bg-pic2{
